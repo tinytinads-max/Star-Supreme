@@ -21,23 +21,41 @@
 <body>
 
      <div class="header">
-<div class="header-left"><img src="./images/Picsart_26-07-21_16-54-11-199.png" alt="Logo" class="logo-img"></div>
-<div class="header-right"><nav class="nav">
-    <div class="nav-links">
-        <a href="./index.html">Home</a>
-        <a href="./about.html">About</a>
-        <a href="./gallery.html">Gallery</a>
 
-        <div class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Products </a>
-            <div class="dropdown-content">
-                <a href="6 gutter.html">6 Gutter</a>
-                <a href="9 gutter.html">9 Gutter</a>
-            </div>
-        </div>
-        <a href="./contact.html">Contact</a>
+    <div class="header-left">
+        <img src="./images/Picsart_26-07-21_16-54-11-199.png"
+             alt="Logo"
+             class="logo-img">
     </div>
-</nav></div>
+
+    <!-- Hamburger Button -->
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="header-right" id="mobileMenu">
+        <nav class="nav">
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./about.html">About</a>
+                <a href="./gallery.html">Gallery</a>
+
+                <div class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Products</a>
+
+                    <div class="dropdown-content">
+                        <a href="6 gutter.html">6 Gutter</a>
+                        <a href="9 gutter.html">9 Gutter</a>
+                    </div>
+                </div>
+
+                <a href="./contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
+
 </div>
     
 
@@ -247,24 +265,24 @@
 
  <script>
  
+
+
+
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    const button = document.querySelector(".menu-toggle");
+
+    menu.classList.toggle("active");
+    button.classList.toggle("active");
+}
+
+
 function scrollGallery(distance) {
     document.getElementById("gallery").scrollBy({
         left: distance,
         behavior: "smooth"
     });
 }
-
-// function showFittings() {
-//     const gallery = document.getElementById("gallery");
-
-//     gallery.scrollTo({
-//         left: gallery.scrollWidth,
-//         behavior: "smooth"
-//     });
-    
-// }
-
-
 
 </script>
 </body>
@@ -1811,7 +1829,7 @@ Small Mobile (400px)
     }
 
     .pathy-6 img{
-        /* width:100%; */
+        width:100%;
         max-width:100%;
         height:auto;
         object-fit:contain;
@@ -1834,7 +1852,7 @@ Small Mobile (400px)
        ========================= */
 
     #gallery{
-        gap:88px;
+        gap:20px;
         padding:10px 5px 20px;
     }
 
@@ -2033,6 +2051,1548 @@ Small Mobile (400px)
 
     .contact-left h2{
         font-size:46px;
+    }
+
+}
+
+    ```css
+/* =========================================================
+   MOBILE RESPONSIVE FIX
+   Menu + Boxes + Gallery
+========================================================= */
+
+/* ---------- TABLET / MOBILE ---------- */
+@media (max-width: 768px) {
+
+    /* =========================
+       HEADER / MENU
+    ========================= */
+
+    .header {
+        height: 70px;
+        padding: 0 20px;
+        position: fixed;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo-img {
+        width: 125px;
+    }
+
+    .header-right {
+        width: auto;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    /* Products dropdown */
+    .dropdown-content {
+        min-width: 150px;
+        right: 0;
+        left: auto;
+        top: 30px;
+        border-radius: 8px;
+        padding: 5px 0;
+    }
+
+    .dropdown-content a {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    /* Keep dropdown working on touch/mobile */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+    ========================= */
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 100px 15px 30px;
+        overflow: hidden;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 50px;
+    }
+
+    .hero-image {
+        width: 100%;
+        order: -1;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 300px;
+        border-radius: 15px;
+    }
+
+    .hero-content {
+        width: 100%;
+        text-align: left;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       FEATURE SECTION
+    ========================= */
+
+    .feature-section,
+    .feature-section.reverse {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 25px;
+        margin: 60px 0;
+    }
+
+    .feature-image {
+        width: 100%;
+    }
+
+    .feature-image img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .feature-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .feature-content h2 {
+        font-size: 26px;
+        line-height: 1.3;
+    }
+
+    .feature-content p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+
+    /* =========================
+       GALLERY TITLE
+    ========================= */
+
+    .one {
+        width: 100%;
+    }
+
+    .one h2,
+    .gallery-wrapper + h2 {
+        font-size: 26px;
+        margin-bottom: 18px;
+    }
+
+
+    /* =========================
+       FIRST GUTTER IMAGE
+    ========================= */
+
+    .gallery-wrapper {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding-top:44px;
+    }
+
+    #gallery1 {
+        width: 100%;
+    }
+
+    .pathy-6 {
+        width: 100%;
+    }
+
+    .pathy-6 img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+
+    /* =========================
+       FITTINGS GALLERY
+    ========================= */
+
+    #gallery {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px 5px 20px;
+        display: flex;
+    }
+
+    .gallery-product {
+        flex: 0 0 210px;
+        width: 210px;
+        min-width: 210px;
+    }
+
+    .gallery-item {
+        width: 100%;
+        min-width: 100%;
+        height: 250px;
+        margin: 0;
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .gallery-item img {
+        width: 75%;
+        height: 210px;
+        object-fit: contain;
+    }
+
+    .gallery-product > p {
+        width: 100%;
+        font-size: 14px;
+        margin-top: 12px;
+        white-space: normal;
+    }
+
+
+    /* =========================
+       SCROLL BUTTONS
+    ========================= */
+
+    .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+        top: -20px;
+    }
+
+    .left {
+        right: 50px;
+    }
+
+    .right {
+        right: 5px;
+    }
+
+
+    /* =========================
+       CONTACT SECTION
+    ========================= */
+
+    .contact-section {
+        width: 100%;
+        padding: 60px 20px;
+        margin-top: 50px;
+        top: 0;
+    }
+
+    .contact-container {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .contact-left {
+        width: 100%;
+        text-align: left;
+    }
+
+    .contact-left h5 {
+        font-size: 16px;
+    }
+
+    .contact-left h2 {
+        font-size: 32px;
+        line-height: 1.3;
+    }
+
+    .contact-left > p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .contact-info {
+        width: 100%;
+    }
+
+    .info-box {
+        width: 100%;
+        gap: 15px;
+    }
+
+    .info-box img {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+
+    .info-box h4 {
+        font-size: 18px;
+    }
+
+    .info-box p {
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+
+    /* =========================
+       CONTACT FORM
+    ========================= */
+
+    .contact-right {
+        width: 100%;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .contact-right input,
+    .contact-right textarea {
+        width: 100%;
+        font-size: 15px;
+        padding: 14px;
+    }
+
+    .contact-right button {
+        width: 100%;
+        font-size: 16px;
+        padding: 14px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE - 576px
+========================================================= */
+
+@media (max-width: 576px) {
+
+    /* Header */
+    .header {
+        height: 65px;
+        padding: 0 12px;
+    }
+
+    .logo-img {
+        width: 105px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 12px;
+    }
+
+    .dropdown-content {
+        min-width: 135px;
+        top: 28px;
+    }
+
+    .dropdown-content a {
+        font-size: 12px;
+        padding: 9px 12px;
+    }
+
+
+    /* Main */
+    .container {
+        padding: 85px 12px 25px;
+    }
+
+
+    /* Hero */
+    .hero-image img {
+        height: 240px;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+
+    /* Feature */
+    .feature-section {
+        margin: 50px 0;
+    }
+
+    .feature-image img {
+        height: 240px;
+    }
+
+    .feature-content h2 {
+        font-size: 22px;
+    }
+
+    .feature-content p {
+        font-size: 14px;
+    }
+
+
+    /* Gallery */
+    .one h2,
+    .gallery-wrapper + h2 {
+        font-size: 22px;
+    }
+
+    .gallery-product {
+        flex: 0 0 180px;
+        width: 180px;
+        min-width: 180px;
+    }
+
+    .gallery-item {
+        height: 220px;
+    }
+
+    .gallery-item img {
+        height: 185px;
+    }
+
+    .gallery-product > p {
+        font-size: 13px;
+    }
+
+
+    /* Contact */
+    .contact-section {
+        padding: 50px 15px;
+    }
+
+    .contact-left h2 {
+        font-size: 28px;
+    }
+
+    .contact-left > p {
+        font-size: 14px;
+    }
+
+    .contact-right {
+        padding: 18px;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE - 400px
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .header {
+        padding: 0 8px;
+    }
+
+    .logo-img {
+        width: 90px;
+    }
+
+    .nav-links {
+        gap: 7px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 11px;
+    }
+
+    .dropdown-content {
+        min-width: 125px;
+    }
+
+    .dropdown-content a {
+        font-size: 11px;
+    }
+
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .hero-image img {
+        height: 200px;
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
+    }
+
+
+    .feature-image img {
+        height: 210px;
+    }
+
+    .feature-content h2 {
+        font-size: 20px;
+    }
+
+
+    .gallery-product {
+        flex: 0 0 165px;
+        width: 165px;
+        min-width: 165px;
+    }
+
+    .gallery-item {
+        height: 200px;
+    }
+
+    .gallery-item img {
+        height: 170px;
+    }
+
+    .gallery-product > p {
+        font-size: 13px;
+    }
+
+
+    .contact-section {
+        padding: 45px 12px;
+    }
+
+    .contact-left h2 {
+        font-size: 25px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES - 360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .logo-img {
+        width: 80px;
+    }
+
+    .nav-links {
+        gap: 5px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 10px;
+    }
+
+    .gallery-product {
+        flex: 0 0 155px;
+        width: 155px;
+        min-width: 155px;
+    }
+
+    .gallery-item {
+        height: 190px;
+    }
+
+    .gallery-item img {
+        height: 160px;
+    }
+}
+```
+
+
+
+
+    /* =========================================================
+   FINAL MOBILE FIX
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   MOBILE HEADER
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: auto;
+        min-height: 70px;
+
+        padding: 10px 15px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 6px;
+    }
+
+    .header-left {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo-img {
+        width: 110px;
+        height: auto;
+    }
+
+    .header-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 10px;
+
+        flex-wrap: wrap;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+
+    /* PRODUCTS DROPDOWN */
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content {
+        position: absolute;
+
+        top: calc(100% + 5px);
+        left: 50%;
+        right: auto;
+
+        transform: translateX(-50%);
+
+        width: 150px;
+        min-width: 150px;
+
+        padding: 5px 0;
+
+        z-index: 2000;
+    }
+
+    .dropdown-content a {
+        display: block;
+        width: 100%;
+        padding: 10px 12px;
+
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       MAIN CONTAINER
+    ===================================================== */
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 150px 15px 30px;
+
+        overflow: hidden;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 25px;
+        margin-bottom: 50px;
+    }
+
+    .hero-image {
+        width: 100%;
+        order: -1;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    .hero-content p {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+
+    /* =====================================================
+       FEATURE BOX
+    ===================================================== */
+
+    .feature-section,
+    .feature-section.reverse {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 25px;
+
+        margin: 60px 0;
+    }
+
+    .feature-image {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .feature-image img {
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+
+        object-fit: cover;
+    }
+
+    .feature-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .feature-content p {
+        width: 100%;
+        max-width: 100%;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+
+    /* =====================================================
+       GUTTER PATHY IMAGE
+    ===================================================== */
+
+    .gallery-wrapper {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding top:36px;
+    }
+
+    #gallery1 {
+        width: 100%;
+        max-width: 100%;
+
+        overflow: hidden;
+    }
+
+    .pathy-6 {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .pathy-6 img {
+        width: 60%;
+        max-width: 100%;
+        height: auto;
+
+        object-fit: contain;
+    }
+
+
+    /* =====================================================
+       GALLERY
+    ===================================================== */
+
+    #gallery {
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
+
+        gap: 15px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding: 49px 5px 25px;
+
+        scroll-behavior: smooth;
+
+        scrollbar-width: none;
+    }
+
+    #gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    /* PRODUCT BOX */
+
+    #gallery .gallery-product {
+        flex: 0 0 190px;
+
+        width: 190px;
+        min-width: 190px;
+
+        max-width: 190px;
+
+        text-align: center;
+    }
+
+
+    /* BOX */
+
+    #gallery .gallery-item {
+        width: 190px;
+        min-width: 190px;
+        max-width: 190px;
+
+        height: 220px;
+
+        margin: 0;
+        padding: 12px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        overflow: hidden;
+
+        border-radius: 14px;
+    }
+
+
+    /* PRODUCT IMAGE */
+
+    #gallery .gallery-item img {
+        width: 75%;
+        max-width: 100%;
+
+        height: 185px;
+
+        object-fit: contain;
+    }
+
+
+    /* PRODUCT NAME */
+
+    #gallery .gallery-product > p {
+        width: 100%;
+        max-width: 190px;
+
+        margin-top: 12px;
+
+        white-space: normal;
+        overflow-wrap: break-word;
+
+        text-align: center;
+    }
+
+
+    /* =====================================================
+       SCROLL BUTTONS
+    ===================================================== */
+
+    .scroll-btn {
+        width: 35px;
+        height: 35px;
+
+        top: -42px;
+
+        transform: none;
+
+        font-size: 14px;
+    }
+
+    .scroll-btn.left {
+        right: 48px;
+        top:1px;
+    }
+
+    .scroll-btn.right {
+        right: 5px;
+        top:1px;
+    }
+
+
+    /* =====================================================
+       CONTACT
+    ===================================================== */
+
+    .contact-section {
+        width: 100%;
+
+        position: relative;
+        top: 0;
+
+        margin-top: 50px;
+
+        padding: 60px 15px;
+    }
+
+    .contact-container {
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 35px;
+    }
+
+    .contact-left {
+        width: 100%;
+    }
+
+    .contact-right {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 20px;
+
+        box-sizing: border-box;
+    }
+
+    .contact-right form {
+        width: 100%;
+    }
+
+    .contact-right input,
+    .contact-right textarea {
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
+    }
+
+}
+
+
+/* =========================================================
+   576px
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .header {
+        padding: 8px 10px;
+    }
+
+    .logo-img {
+        width: 95px;
+    }
+
+    .nav-links {
+        gap: 7px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 12px;
+    }
+
+    .container {
+        padding: 135px 12px 25px;
+    }
+
+    .hero-image img {
+        height: 240px;
+    }
+
+    #gallery .gallery-product {
+        flex: 0 0 175px;
+        width: 175px;
+        min-width: 175px;
+    }
+
+    #gallery .gallery-item {
+        width: 175px;
+        min-width: 175px;
+        height: 210px;
+    }
+
+    #gallery .gallery-item img {
+        height: 175px;
+    }
+
+    #gallery .gallery-product > p {
+        max-width: 175px;
+    }
+
+    .contact-section {
+        padding: 50px 12px;
+    }
+
+    .contact-right {
+        padding: 16px;
+    }
+}
+
+
+/* =========================================================
+   430px
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .header {
+        min-height: 68px;
+        padding: 7px 8px;
+    }
+
+    .logo-img {
+        width: 90px;
+    }
+
+    .nav-links {
+        gap: 6px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 11px;
+    }
+
+    .container {
+        padding: 130px 10px 25px;
+    }
+
+    .hero-image img {
+        height: 220px;
+    }
+
+    .feature-image img {
+        height: 210px;
+    }
+
+    #gallery .gallery-product {
+        flex: 0 0 165px;
+        width: 165px;
+        min-width: 165px;
+    }
+
+    #gallery .gallery-item {
+        width: 165px;
+        min-width: 165px;
+        height: 200px;
+    }
+
+    #gallery .gallery-item img {
+        height: 165px;
+    }
+
+    #gallery .gallery-product > p {
+        max-width: 165px;
+    }
+}
+
+
+/* =========================================================
+   390px
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .logo-img {
+        width: 85px;
+    }
+
+    .nav-links {
+        gap: 5px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 10px;
+    }
+
+    .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    #gallery .gallery-product {
+        flex: 0 0 155px;
+        width: 155px;
+        min-width: 155px;
+    }
+
+    #gallery .gallery-item {
+        width: 155px;
+        min-width: 155px;
+        height: 190px;
+    }
+
+    #gallery .gallery-item img {
+        height: 155px;
+    }
+
+    #gallery .gallery-product > p {
+        max-width: 155px;
+    }
+}
+
+
+/* =========================================================
+   375px
+========================================================= */
+
+@media (max-width: 375px) {
+
+    .header {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .logo-img {
+        width: 80px;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 10px;
+    }
+
+    .container {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    #gallery .gallery-product {
+        flex: 0 0 150px;
+        width: 150px;
+        min-width: 150px;
+    }
+
+    #gallery .gallery-item {
+        width: 150px;
+        min-width: 150px;
+        height: 185px;
+    }
+
+    #gallery .gallery-item img {
+        height: 150px;
+    }
+
+    #gallery .gallery-product > p {
+        max-width: 150px;
+    }
+
+    .contact-right {
+        padding: 14px;
+    }
+}
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+/* Hidden on desktop */
+.menu-toggle {
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE HAMBURGER
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        height: 65px;
+        min-height: 65px;
+
+        padding: 0 15px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        z-index: 3000;
+    }
+
+    /* Logo */
+    .header-left {
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .logo-img {
+        width: 105px;
+        height: auto;
+    }
+
+
+    /* =========================
+       HAMBURGER BUTTON
+    ========================= */
+
+    .menu-toggle {
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 5px;
+
+        background: transparent;
+        border: none;
+
+        cursor: pointer;
+
+        padding: 0;
+
+        z-index: 4000;
+    }
+
+    .menu-toggle span {
+        display: block;
+
+        width: 26px;
+        height: 3px;
+
+        background: #ffffff;
+
+        border-radius: 3px;
+
+        transition: all 0.3s ease;
+    }
+
+
+    /* =========================
+       MOBILE NAVIGATION
+    ========================= */
+
+    .header-right {
+        position: absolute;
+
+        top: 65px;
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        background: rgba(31, 43, 56, 0.98);
+
+        backdrop-filter: blur(10px);
+
+        padding: 15px 20px 20px;
+
+        box-shadow: 0 10px 25px rgba(0,0,0,.3);
+    }
+
+    /* Show menu */
+    .header-right.active {
+        display: block;
+    }
+
+
+    .nav {
+        width: 100%;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 0;
+    }
+
+
+    /* Menu links */
+
+    .nav-links > a,
+    .nav-links .dropbtn {
+        display: block;
+
+        width: 100%;
+
+        padding: 12px 10px;
+
+        text-align: center;
+
+        color: #ffffff;
+
+        font-size: 14px;
+
+        text-decoration: none;
+    }
+
+    .nav-links > a:hover,
+    .nav-links .dropbtn:hover {
+        color: #74d3ff;
+    }
+
+
+    /* =========================
+       PRODUCTS DROPDOWN
+    ========================= */
+
+    .dropdown {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-content {
+        position: static;
+
+        width: 100%;
+        min-width: 100%;
+
+        transform: none;
+
+        background: #243241;
+
+        border-radius: 8px;
+
+        padding: 5px 0;
+
+        box-shadow: none;
+
+        display: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content a {
+        display: block;
+
+        width: 100%;
+
+        padding: 10px;
+
+        text-align: center;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       HAMBURGER → X
+    ========================= */
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+}
+
+
+/* =========================================================
+   576px
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .header {
+        height: 60px;
+        min-height: 60px;
+
+        padding: 0 12px;
+    }
+
+    .header-right {
+        top: 60px;
+    }
+
+    .logo-img {
+        width: 95px;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .menu-toggle span {
+        width: 24px;
+        height: 3px;
+    }
+
+}
+
+
+/* =========================================================
+   430px
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .header {
+        height: 58px;
+        min-height: 58px;
+
+        padding: 0 10px;
+    }
+
+    .header-right {
+        top: 58px;
+    }
+
+    .logo-img {
+        width: 90px;
+    }
+
+}
+
+
+/* =========================================================
+   390px
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .header {
+        padding: 0 8px;
+    }
+
+    .logo-img {
+        width: 85px;
+    }
+
+    .menu-toggle {
+        width: 38px;
+        height: 38px;
+    }
+
+    .menu-toggle span {
+        width: 23px;
+    }
+
+}
+
+
+/* =========================================================
+   375px
+========================================================= */
+
+@media (max-width: 375px) {
+
+    .header {
+        padding: 0 7px;
+    }
+
+    .logo-img {
+        width: 80px;
     }
 
 }
