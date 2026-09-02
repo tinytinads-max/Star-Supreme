@@ -114,34 +114,81 @@
         <div class="pathy-6"><img src="./images/9-gutter-pathy.png"></div>
         
     </div>
-
-   
-
-
 </div>
-    <h2>Gutter Fittings</h2>
+   <h2>Gutter Fittings</h2>
 <div class="gallery-wrapper">
-
     <button class="scroll-btn left" onclick="scrollGallery(-300)">
         &#10094;
     </button>
-
     <div class="gallery-container" id="gallery">
-        <div class="gallery-item"><img src="./images/uPvc Bracket-9.png"></div>
-        <div class="gallery-item"><img src="./images/uPvc Bracket with GI Extension-9.png"></div>
-        <div class="gallery-item"><img src="./images/Middle Drop-9.png"></div>
-        <div class="gallery-item"><img src="./images/Gutter Joint-9.png"></div>
-        <div class="gallery-item"><img src="./images/G I Bracket-9.png"></div>
-        <div class="gallery-item"><img src="./images/EndDrop-9.png"></div>
-        <div class="gallery-item"><img src="./images/End Cap-9.png"></div>
-        <div class="gallery-item"><img src="./images/Elbow Joint Corner Joint-9.png"></div>
-        <div class="gallery-item"><img src="./images/Elbow Drop Corner Drop-9.png"></div>
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/uPvc Bracket-9.png" alt="uPVC Bracket">
+            </div>
+            <p>uPVC Bracket</p>
+        </div>
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/uPvc Bracket with GI Extension-9.png" alt="uPVC Bracket with GI Extension">
+            </div>
+            <p>uPVC Bracket with GI Extension</p>
+        </div>
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/Middle Drop-9.png" alt="Middle Drop">
+            </div>
+            <p>Middle Drop</p>
+        </div>
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/Gutter Joint-9.png" alt="Gutter Joint">
+            </div>
+            <p>Gutter Joint</p>
+        </div>
+
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/G I Bracket-9.png" alt="GI Bracket">
+            </div>
+            <p>GI Bracket</p>
+        </div>
+
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/EndDrop-9.png" alt="End Drop">
+            </div>
+            <p>End Drop</p>
+        </div>
+
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/End Cap-9.png" alt="End Cap">
+            </div>
+            <p>End Cap</p>
+        </div>
+
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/Elbow Joint Corner Joint-9.png" alt="Elbow Joint Corner Joint">
+            </div>
+            <p>Elbow Joint Corner Joint</p>
+        </div>
+
+        <div class="gallery-product">
+            <div class="gallery-item">
+                <img src="./images/Elbow Drop Corner Drop-9.png" alt="Elbow Drop Corner Drop">
+            </div>
+            <p>Elbow Drop Corner Drop</p>
+        </div>
+
     </div>
 
     <button class="scroll-btn right" onclick="scrollGallery(300)">
         &#10095;
     </button>
+
 </div>
+
 </main>
 
 
@@ -243,6 +290,10 @@ function scrollGallery(distance) {
     align-items: center;
     padding: 0 70px;
     z-index: 1000;
+}
+
+    body{
+    overflow-x:hidden;
 }
 
 .header-left{
@@ -487,23 +538,103 @@ body {
 .pathy-img{width: 100%;}
     .gallery-wrapper{
     position:relative;
-    width:103%;
+    width:100%;
     margin:auto;
     display:flex;
     align-items:center;
 }
-.gallery-container{
+/* =========================================
+   PRODUCT GALLERY
+========================================= */
+
+.gallery-container {
     overflow-x: auto;
     display: flex;
+    gap: 17px;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    -ms-overflow-style: none;
     white-space: nowrap;
     flex: 1;
-    /* New Styles */
-    /* padding: 20px; */
-    transition: all 0.4s ease;
+    padding: 10px 5px 20px;
 }
 
+.gallery-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Product wrapper */
+
+.gallery-product {
+    flex: 0 0 250px;
+    width: 250px;
+    text-align: center;
+}
+
+
+/* Image card */
+
+.gallery-item {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+
+    background: #081521;
+    border: 1px solid #2f8fff;
+    border-radius: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.35s ease;
+    cursor: pointer;
+}
+
+
+/* Image */
+
+.gallery-item img {
+    width: 75%;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 12px;
+
+    transition: transform 0.35s ease;
+}
+
+
+/* Card hover */
+
+.gallery-item:hover {
+    border-color: #66b3ff;
+    box-shadow: 0 12px 25px rgba(47, 143, 255, 0.35);
+    transform: translateY(-8px);
+    background: #10253b;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+
+/* =========================================
+   PRODUCT NAME OUTSIDE CARD
+========================================= */
+
+.gallery-product > p {
+    margin-top: 14px;
+    margin-bottom: 0;
+    width:221px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.4;
+
+    white-space: normal;
+    text-align: center;
+}
 /* Hover Effect */
 .gallery-container:hover{
 
@@ -513,6 +644,81 @@ body {
 .gallery-container::-webkit-scrollbar{
     display:none;
 }
+
+@media (max-width: 768px) {
+
+    .gallery-container {
+        gap: 18px;
+    }
+
+    .gallery-product {
+        flex: 0 0 210px;
+        width: 210px;
+    }
+
+    .gallery-item {
+        height: 250px;
+        padding: 15px;
+    }
+
+    .gallery-item img {
+        height: 210px;
+        width: 75%;
+    }
+
+    .gallery-product > p {
+        font-size: 15px;
+        margin-top: 12px;
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    .gallery-container {
+        gap: 15px;
+    }
+
+    .gallery-product {
+        flex: 0 0 180px;
+        width: 180px;
+    }
+
+    .gallery-item {
+        height: 220px;
+        padding: 12px;
+    }
+
+    .gallery-item img {
+        height: 185px;
+    }
+
+    .gallery-product > p {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .gallery-product {
+        flex: 0 0 165px;
+        width: 165px;
+    }
+
+    .gallery-item {
+        height: 200px;
+    }
+
+    .gallery-item img {
+        height: 170px;
+    }
+
+    .gallery-product > p {
+        font-size: 13px;
+    }
+}
+
 
 .scroll-btn{
     position:absolute;
@@ -537,31 +743,15 @@ body {
 }
 
 .left{
-    right:37px;
+    right:97px;
 }
 
 .right{
-    right:-20px;
+    right:44px;
 }
 
 
-    .gallery-container::-webkit-scrollbar {
-    height: 10px;
-}
 
-.gallery-container::-webkit-scrollbar-track {
-    background: #ddd;
-    border-radius: 10px;
-}
-
-.gallery-container::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 10px;
-}
-
-.gallery-container::-webkit-scrollbar-thumb:hover {
-    background: #333;
-}
 
    .gallery-item{
     flex: 0 0 auto;
@@ -928,17 +1118,38 @@ Large Desktop (1600px)
     padding:130px 40px;
 }
 
+.gallery-item {
+    border: 1px solid #2f8fff;
+    border-radius: 14px;
+    width: 255px;
+}
+.gallery-item {
+    flex: 0 0 auto;
+    width: 221px;
+    height: 281px;
+    margin: 0 -1px;
+    padding: 15px;
+    background: #081521;
+    border: 1px solid rgba(47, 143, 255, .35);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.35s ease;
+    cursor: pointer;
+}
+
 .hero-content h1{
     font-size:52px;
 }
 
 .hero-image img{
-    height:380px;
-    width: 100%;
+    height:373px;
+    width: 94%;
 }
 
 .feature-image img{
-    height:420px;
+    height:391px;
 }
 
 }
@@ -1419,7 +1630,6 @@ Small Mobile (400px)
     .info-box{
         justify-content:center;
     }
-
 }
 
 @media(max-width:768px){
