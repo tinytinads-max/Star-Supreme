@@ -762,8 +762,8 @@ body {
     width: 100%;
     margin: 14px 0 0;
     color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 1.4;
     text-align: center;
 }
@@ -1485,7 +1485,7 @@ Small Mobile (400px)
 
 }
 .one h2{
-    margin-left:45px;
+    margin-left:1px;
     margin-bottom: 15px;
     color: #2f8fff;
     font-size: 26px;
@@ -1859,7 +1859,7 @@ img {
 
     .feature-image img {
         width: 100%;
-        height: 426px;
+        height: 380px;
     }
 
     .feature-content h2 {
@@ -1880,8 +1880,7 @@ img {
     }
 
     .gallery-item {
-        width: 210px;
-        height:301px;
+        width: 220px;
     }
 
     .gallery-item img {
@@ -3545,42 +3544,80 @@ img {
        GALLERY
        ========================= */
 
-    .gallery-wrapper {
-        width: 100%;
-        max-width: 1700px;
-        margin: 0 auto;
-    }
+   /* =========================
+   GALLERY - 1920px FIX
+   ========================= */
 
-    .gallery-container {
-        width: 100%;
-        padding: 25px 10px;
-        gap: 30px;
-    }
+/* =========================
+   GALLERY - 1920px FIX
+   ========================= */
 
-    .gallery-item {
-        width: 280px;
-        flex-shrink: 0;
-    }
+.gallery-wrapper {
+    width: 100%;
+    max-width: 1750px;
+    margin: 0 auto;
+}
 
-    .gallery-item img {
-        width: 100%;
-        height: 300px;
-        
-        border-radius: 15px;
-    }
+.gallery-container {
+    width: 100%;
+    padding: 25px 15px 35px;
+    gap: 30px;
+    align-items: flex-start;
+}
 
-    .scroll-btn {
-        width: 50px;
-        height: 50px;
-    }
+/* Bigger fitting card */
+.gallery-item {
+    width: 250px;
+    min-width: 250px;
+    flex: 0 0 250px;
+    margin: 0;
+}
 
-    .left {
-        right: 60px;
-    }
+/* Bigger image box */
+.gallery-image {
+    width: 250px;
+    height: 350px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
 
-    .right {
-        right: 0;
-    }
+/* Image inside box */
+.gallery-image img {
+    width: auto;
+    max-width: 82%;
+    height: auto;
+    max-height: 240px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 12px;
+}
+
+/* Product name */
+.gallery-item p {
+    width: 100%;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Arrows */
+.scroll-btn {
+    width: 50px;
+    height: 50px;
+}
+
+.left {
+    right: 58px;
+}
+
+.right {
+    right: 5px;
+}
 
 
     /* =========================
