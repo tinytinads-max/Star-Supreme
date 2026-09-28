@@ -1,65 +1,1944 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Rain Water Gutter</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #081521;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 70px;
+
+            background: rgba(31, 43, 56, 0.96);
+            backdrop-filter: blur(10px);
+
+            z-index: 5000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            width: 170px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav-links > a,
+        .dropbtn {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 500;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links > a:hover,
+        .dropbtn:hover {
+            color: #74d3ff;
+        }
+
+
+        /* =====================================================
+           DROPDOWN
+        ===================================================== */
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+
+            width: 190px;
+
+            background: #243241;
+            border-radius: 10px;
+
+            padding: 8px 0;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+
+            transition: 0.25s ease;
+
+            z-index: 6000;
+        }
+
+        .dropdown-content a {
+            display: block;
+
+            padding: 11px 18px;
+
+            color: #ffffff;
+            font-size: 15px;
+            white-space: nowrap;
+
+            transition: 0.25s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: #32475f;
+            color: #74d3ff;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           HAMBURGER
+        ===================================================== */
+
+        .menu-toggle {
+            display: none;
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+            background: transparent;
+
+            cursor: pointer;
+
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            gap: 5px;
+
+            z-index: 7000;
+        }
+
+        .menu-toggle span {
+            display: block;
+
+            width: 26px;
+            height: 3px;
+
+            background: #ffffff;
+            border-radius: 5px;
+
+            transition: 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .container {
+            width: 100%;
+            max-width: 1800px;
+
+            margin: 0 auto;
+
+            padding: 140px 60px 70px;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 42% 58%;
+
+            align-items: center;
+
+            gap: 50px;
+
+            margin-bottom: 100px;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            color: #2f8fff;
+
+            font-size: clamp(38px, 4vw, 58px);
+
+            font-weight: 500;
+
+            line-height: 1.08;
+
+            text-transform: uppercase;
+
+            margin-bottom: 28px;
+        }
+
+        .hero-content p {
+            max-width: 550px;
+
+            color: #b7c3d3;
+
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            width: 100%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 520px;
+
+            object-fit: cover;
+
+            border-radius: 22px;
+        }
+
+
+        /* =====================================================
+           FEATURE
+        ===================================================== */
+
+        .feature-section {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: 1.1fr 0.9fr;
+
+            align-items: center;
+
+            gap: 60px;
+
+            margin: 100px 0;
+        }
+
+        .feature-image {
+            width: 100%;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(47, 143, 255, 0.2);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 500px;
+
+            object-fit: cover;
+
+            transition: transform 0.5s ease;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.04);
+        }
+
+        .feature-content {
+            width: 100%;
+        }
+
+        .feature-content h2 {
+            color: #2f8fff;
+
+            font-size: clamp(24px, 2.2vw, 32px);
+
+            line-height: 1.3;
+
+            font-weight: 700;
+
+            margin-bottom: 22px;
+
+            text-transform: uppercase;
+        }
+
+        .feature-content p {
+            color: #b9c4cf;
+
+            font-size: 15px;
+
+            line-height: 2;
+
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           SECTION TITLE
+        ===================================================== */
+
+        .section-title {
+            width: 100%;
+            margin-bottom: 22px;
+        }
+
+        .section-title h2 {
+            color: #2f8fff;
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* =====================================================
+           9 GUTTER PATHY IMAGE - OPTIMIZED
+        ===================================================== */
+
+        .pathy-gallery {
+            width: 100%;
+            margin-bottom: 70px;
+        }
+
+        .pathy-image {
+            width: 20%;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(47, 143, 255, 0.25);
+
+            background: #081521;
+
+            /* Prevent layout jump */
+            aspect-ratio: 16 / 7;
+        }
+
+        .pathy-image img {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            /* Keeps complete image visible */
+            object-fit: contain;
+
+            object-position: center;
+
+            /* Smooth rendering */
+            image-rendering: auto;
+
+            /* Avoid unnecessary huge image rendering */
+            max-width: 100%;
+            max-height: 100%;
+
+            /* Prevent selection dragging */
+            user-select: none;
+        }
+
+
+        /* =====================================================
+           FITTINGS GALLERY
+        ===================================================== */
+
+        .fittings-section {
+            position: relative;
+
+            width: 100%;
+
+            margin-top: 20px;
+        }
+
+        .gallery-wrapper {
+            position: relative;
+
+            width: 100%;
+        }
+
+        .gallery-container {
+            width: 100%;
+
+            display: flex;
+
+            gap: 20px;
+
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            scroll-behavior: smooth;
+
+            scrollbar-width: none;
+
+            padding: 10px 5px 30px;
+
+            cursor: grab;
+
+            user-select: none;
+        }
+
+        .gallery-container:active {
+            cursor: grabbing;
+        }
+
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        /* =====================================================
+           PRODUCT CARD
+        ===================================================== */
+
+        .gallery-product {
+            flex: 0 0 260px;
+
+            width: 260px;
+
+            text-align: center;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 330px;
+
+            padding: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #081521;
+
+            border: 1px solid rgba(47, 143, 255, .35);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            transition: 0.35s ease;
+        }
+
+        .gallery-item:hover {
+            background: #10253b;
+
+            border-color: #66b3ff;
+
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 12px 30px rgba(47, 143, 255, 0.30);
+        }
+
+        .gallery-item img {
+            width: 80%;
+            height: 275px;
+
+            object-fit: contain;
+
+            transition: transform 0.35s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-product p {
+            width: 100%;
+
+            margin-top: 14px;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 400;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           SCROLL BUTTONS
+        ===================================================== */
+
+        .scroll-btn {
+            position: absolute;
+
+            top: -65px;
+
+            width: 45px;
+            height: 45px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            color: #111111;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+            transition: 0.3s ease;
+
+            z-index: 100;
+        }
+
+        .scroll-btn:hover {
+            background: #2f8fff;
+            color: #ffffff;
+        }
+
+        .scroll-btn.left {
+            right: 58px;
+        }
+
+        .scroll-btn.right {
+            right: 5px;
+        }
+
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        .contact-section {
+            width: 100%;
+
+            background: #1f2b38;
+
+            padding: 100px 7%;
+
+            margin-top: 50px;
+        }
+
+        .contact-container {
+            width: 100%;
+            max-width: 1500px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+        .contact-left {
+            width: 100%;
+        }
+
+        .contact-left h5 {
+            color: #2b7cff;
+
+            font-size: 17px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+        .contact-left h2 {
+            color: #ffffff;
+
+            font-size: clamp(30px, 3vw, 46px);
+
+            line-height: 1.25;
+
+            margin-bottom: 22px;
+        }
+
+        .contact-left > p {
+            max-width: 650px;
+
+            color: #ffffff;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            margin-bottom: 35px;
+        }
+
+        .contact-info {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 22px;
+        }
+
+        .info-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+        .info-box img {
+            width: 55px;
+            height: 55px;
+
+            padding: 12px;
+
+            flex-shrink: 0;
+
+            background: #2b7cff;
+
+            border-radius: 50%;
+
+            object-fit: contain;
+        }
+
+        .info-box h4 {
+            color: #ffffff;
+
+            font-size: 19px;
+
+            margin-bottom: 2px;
+        }
+
+        .info-box p {
+            color: #d8d8d8;
+
+            font-size: 15px;
+
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           CONTACT FORM
+        ===================================================== */
+
+        .contact-right {
+            width: 100%;
+
+            padding: 40px;
+
+            background: #1d2e40;
+
+            border: 1px solid #1565d8;
+
+            border-radius: 18px;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-right form {
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 17px;
+        }
+
+        .contact-right input,
+        .contact-right textarea {
+            width: 100%;
+
+            padding: 16px;
+
+            color: #ffffff;
+
+            background: #1f2b38;
+
+            border: 1px solid #1e4063;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            resize: vertical;
+
+            transition: 0.3s ease;
+        }
+
+        .contact-right input::placeholder,
+        .contact-right textarea::placeholder {
+            color: #9faab5;
+        }
+
+        .contact-right input:focus,
+        .contact-right textarea:focus {
+            border-color: #2b7cff;
+
+            box-shadow: 0 0 0 2px rgba(43, 124, 255, 0.12);
+        }
+
+        .contact-right textarea {
+            min-height: 150px;
+        }
+
+        .contact-right button {
+            width: 100%;
+
+            padding: 16px;
+
+            background: #0d316b;
+
+            color: #ffffff;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-family: inherit;
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .contact-right button:hover {
+            background: #1565d8;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           LARGE DESKTOP
+        ===================================================== */
+
+        @media (min-width: 1600px) {
+
+            .header {
+                padding: 0 90px;
+            }
+
+            .logo-img {
+                width: 185px;
+            }
+
+            .nav-links {
+                gap: 42px;
+            }
+
+            .container {
+                max-width: 1850px;
+
+                padding-left: 70px;
+                padding-right: 70px;
+            }
+
+            .hero {
+                gap: 70px;
+            }
+
+            .hero-image img {
+                height: 550px;
+            }
+
+            .feature-section {
+                gap: 75px;
+            }
+
+            .feature-image img {
+                height: 530px;
+            }
+
+            .gallery-product {
+                flex-basis: 250px;
+                width: 250px;
+            }
+
+            .gallery-item {
+                height: 350px;
+            }
+
+            .gallery-item img {
+                height: 295px;
+            }
+
+            .contact-container {
+                max-width: 1600px;
+            }
+        }
+
+
+        /* =====================================================
+           LAPTOP
+        ===================================================== */
+
+        @media (max-width: 1599px) {
+
+            .container {
+                padding-left: 45px;
+                padding-right: 45px;
+            }
+
+            .hero-image img {
+                height: 440px;
+            }
+
+            .feature-image img {
+                height: 430px;
+            }
+
+            .gallery-product {
+                flex-basis: 240px;
+                width: 240px;
+            }
+
+            .gallery-item {
+                height: 310px;
+            }
+
+            .gallery-item img {
+                height: 255px;
+            }
+        }
+
+
+        /* =====================================================
+           TABLET LANDSCAPE
+        ===================================================== */
+
+        @media (max-width: 1199px) {
+
+            .header {
+                padding: 0 40px;
+            }
+
+            .logo-img {
+                width: 150px;
+            }
+
+            .nav-links {
+                gap: 25px;
+            }
+
+            .nav-links > a,
+            .dropbtn {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 125px 35px 60px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr 1fr;
+
+                gap: 30px;
+
+                margin-bottom: 80px;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-image img {
+                height: 400px;
+            }
+
+            .feature-section {
+                gap: 35px;
+
+                margin: 80px 0;
+            }
+
+            .feature-image img {
+                height: 380px;
+            }
+
+            .contact-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 991px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                height: 400px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .feature-section {
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+            }
+
+            .feature-image img {
+                height: 420px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+            .contact-left {
+                text-align: center;
+            }
+
+            .contact-left > p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .contact-info {
+                align-items: center;
+            }
+
+            .info-box {
+                width: 350px;
+                max-width: 100%;
+                text-align: left;
+            }
+
+            /* PATHY */
+
+            .pathy-image {
+                aspect-ratio: 16 / 8;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 767px) {
+
+            .header {
+                height: 65px;
+
+                padding: 0 15px;
+
+                flex-direction: row;
+            }
+
+            .logo-img {
+                width: 110px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .header-right {
+                position: absolute;
+
+                top: 65px;
+                left: 0;
+
+                width: 100%;
+
+                display: none;
+
+                padding: 12px 20px 20px;
+
+                background: rgba(31, 43, 56, 0.98);
+
+                backdrop-filter: blur(12px);
+
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            }
+
+            .header-right.active {
+                display: block;
+            }
+
+            .nav {
+                width: 100%;
+            }
+
+            .nav-links {
+                width: 100%;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 0;
+            }
+
+            .nav-links > a,
+            .dropbtn {
+                display: block;
+
+                width: 100%;
+
+                padding: 13px 10px;
+
+                text-align: center;
+
+                font-size: 15px;
+            }
+
+
+            /* MOBILE DROPDOWN */
+
+            .dropdown {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown-content {
+                position: static;
+
+                width: 100%;
+                min-width: 100%;
+
+                padding: 4px 0;
+
+                background: #243241;
+
+                border-radius: 8px;
+
+                box-shadow: none;
+
+                opacity: 1;
+                visibility: visible;
+
+                transform: none;
+
+                display: none;
+            }
+
+            .dropdown.open .dropdown-content {
+                display: block;
+            }
+
+            .dropdown-content a {
+                width: 100%;
+
+                padding: 10px;
+
+                text-align: center;
+
+                font-size: 14px;
+            }
+
+
+            /* MAIN */
+
+            .container {
+                width: 100%;
+
+                padding: 95px 18px 40px;
+            }
+
+
+            /* HERO */
+
+            .hero {
+                display: flex;
+
+                flex-direction: column;
+
+                gap: 25px;
+
+                margin-bottom: 65px;
+            }
+
+            .hero-image {
+                width: 100%;
+
+                order: -1;
+            }
+
+            .hero-image img {
+                width: 100%;
+
+                height: auto;
+
+                aspect-ratio: 16 / 9;
+
+                object-fit: cover;
+
+                border-radius: 15px;
+            }
+
+            .hero-content {
+                width: 100%;
+
+                text-align: left;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(27px, 7vw, 38px);
+
+                line-height: 1.18;
+
+                margin-bottom: 18px;
+            }
+
+            .hero-content p {
+                width: 100%;
+
+                font-size: 15px;
+
+                line-height: 1.7;
+            }
+
+
+            /* FEATURE */
+
+            .feature-section {
+                width: 100%;
+
+                display: flex;
+
+                flex-direction: column;
+
+                gap: 25px;
+
+                margin: 60px 0;
+            }
+
+            .feature-image {
+                width: 100%;
+            }
+
+            .feature-image img {
+                width: 100%;
+
+                height: auto;
+
+                aspect-ratio: 16 / 10;
+
+                object-fit: cover;
+
+                border-radius: 15px;
+            }
+
+            .feature-content {
+                width: 100%;
+
+                padding: 0;
+            }
+
+            .feature-content h2 {
+                font-size: 23px;
+
+                line-height: 1.35;
+
+                margin-bottom: 17px;
+            }
+
+            .feature-content p {
+                font-size: 14px;
+
+                line-height: 1.8;
+            }
+
+
+            /* TITLES */
+
+            .section-title {
+                margin-bottom: 18px;
+            }
+
+            .section-title h2 {
+                font-size: 23px;
+            }
+
+
+            /* =================================================
+               PATHY - MOBILE OPTIMIZED
+            ================================================= */
+
+            .pathy-gallery {
+                width: 100%;
+
+                margin-bottom: 55px;
+            }
+
+            .pathy-image {
+                width: 100%;
+
+                aspect-ratio: 16 / 9;
+
+                border-radius: 12px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                overflow: hidden;
+            }
+
+            .pathy-image img {
+                width: 100%;
+                height: 100%;
+
+                object-fit: contain;
+
+                object-position: center;
+            }
+
+
+            /* FITTINGS */
+
+            .fittings-section {
+                width: 100%;
+            }
+
+            .gallery-container {
+                width: 100%;
+
+                gap: 14px;
+
+                padding: 8px 4px 25px;
+            }
+
+            .gallery-product {
+                flex: 0 0 190px;
+
+                width: 190px;
+            }
+
+            .gallery-item {
+                width: 190px;
+
+                height: 225px;
+
+                padding: 12px;
+
+                border-radius: 13px;
+            }
+
+            .gallery-item img {
+                width: 78%;
+
+                height: 190px;
+            }
+
+            .gallery-product p {
+                font-size: 13px;
+
+                margin-top: 11px;
+
+                line-height: 1.45;
+            }
+
+
+            /* SCROLL BUTTONS */
+
+            .scroll-btn {
+                top: -55px;
+
+                width: 38px;
+                height: 38px;
+
+                font-size: 15px;
+            }
+
+            .scroll-btn.left {
+                right: 48px;
+            }
+
+            .scroll-btn.right {
+                right: 3px;
+            }
+
+
+            /* CONTACT */
+
+            .contact-section {
+                width: 100%;
+
+                padding: 65px 18px;
+
+                margin-top: 40px;
+            }
+
+            .contact-container {
+                width: 100%;
+
+                display: flex;
+
+                flex-direction: column;
+
+                gap: 40px;
+            }
+
+            .contact-left {
+                width: 100%;
+
+                text-align: left;
+            }
+
+            .contact-left h5 {
+                font-size: 15px;
+
+                letter-spacing: 1.5px;
+            }
+
+            .contact-left h2 {
+                font-size: clamp(27px, 7vw, 34px);
+
+                line-height: 1.3;
+            }
+
+            .contact-left > p {
+                font-size: 14px;
+
+                line-height: 1.75;
+            }
+
+            .contact-info {
+                width: 100%;
+
+                align-items: stretch;
+            }
+
+            .info-box {
+                width: 100%;
+
+                gap: 14px;
+            }
+
+            .info-box img {
+                width: 48px;
+                height: 48px;
+
+                padding: 10px;
+            }
+
+            .info-box h4 {
+                font-size: 17px;
+            }
+
+            .info-box p {
+                font-size: 13px;
+
+                overflow-wrap: anywhere;
+            }
+
+
+            /* FORM */
+
+            .contact-right {
+                width: 100%;
+
+                padding: 20px;
+
+                border-radius: 14px;
+            }
+
+            .contact-right input,
+            .contact-right textarea {
+                width: 100%;
+
+                padding: 14px;
+
+                font-size: 14px;
+            }
+
+            .contact-right textarea {
+                min-height: 130px;
+            }
+
+            .contact-right button {
+                padding: 14px;
+
+                font-size: 16px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 576px) {
+
+            .header {
+                height: 60px;
+
+                padding: 0 12px;
+            }
+
+            .header-right {
+                top: 60px;
+            }
+
+            .logo-img {
+                width: 95px;
+            }
+
+            .menu-toggle {
+                width: 40px;
+                height: 40px;
+            }
+
+            .menu-toggle span {
+                width: 24px;
+                height: 3px;
+            }
+
+            .container {
+                padding: 88px 12px 35px;
+            }
+
+            .hero-image img {
+                aspect-ratio: 16 / 10;
+            }
+
+            .hero-content h1 {
+                font-size: 27px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
+
+            .feature-section {
+                margin: 50px 0;
+            }
+
+            .feature-image img {
+                aspect-ratio: 16 / 10;
+            }
+
+            .feature-content h2 {
+                font-size: 21px;
+            }
+
+            .feature-content p {
+                font-size: 13.5px;
+            }
+
+            .section-title h2 {
+                font-size: 21px;
+            }
+
+            /* PATHY */
+
+            .pathy-image {
+                aspect-ratio: 16 / 9;
+                border-radius: 10px;
+            }
+
+            .gallery-product {
+                flex: 0 0 175px;
+
+                width: 175px;
+            }
+
+            .gallery-item {
+                width: 175px;
+
+                height: 210px;
+            }
+
+            .gallery-item img {
+                height: 175px;
+            }
+
+            .gallery-product p {
+                font-size: 12.5px;
+            }
+
+            .contact-section {
+                padding: 55px 12px;
+            }
+
+            .contact-right {
+                padding: 17px;
+            }
+        }
+
+
+        /* =====================================================
+           EXTRA SMALL
+        ===================================================== */
+
+        @media (max-width: 430px) {
+
+            .header {
+                height: 58px;
+
+                padding: 0 10px;
+            }
+
+            .header-right {
+                top: 58px;
+            }
+
+            .logo-img {
+                width: 88px;
+            }
+
+            .container {
+                padding: 82px 10px 30px;
+            }
+
+            .hero {
+                gap: 20px;
+            }
+
+            .hero-image img {
+                aspect-ratio: 16 / 10;
+
+                border-radius: 12px;
+            }
+
+            .hero-content h1 {
+                font-size: 24px;
+
+                line-height: 1.2;
+            }
+
+            .hero-content p {
+                font-size: 13.5px;
+            }
+
+            .feature-image img {
+                aspect-ratio: 16 / 10;
+            }
+
+            .feature-content h2 {
+                font-size: 20px;
+            }
+
+            .feature-content p {
+                font-size: 13px;
+
+                line-height: 1.75;
+            }
+
+            .section-title h2 {
+                font-size: 20px;
+            }
+
+            /* PATHY */
+
+            .pathy-image {
+                aspect-ratio: 16 / 9;
+
+                border-radius: 9px;
+            }
+
+            .gallery-product {
+                flex: 0 0 165px;
+
+                width: 165px;
+            }
+
+            .gallery-item {
+                width: 165px;
+
+                height: 195px;
+            }
+
+            .gallery-item img {
+                height: 160px;
+            }
+
+            .gallery-product p {
+                font-size: 12px;
+            }
+
+            .scroll-btn {
+                width: 35px;
+                height: 35px;
+
+                font-size: 13px;
+
+                top: -50px;
+            }
+
+            .scroll-btn.left {
+                right: 43px;
+            }
+
+            .contact-section {
+                padding: 48px 10px;
+            }
+
+            .contact-left h2 {
+                font-size: 25px;
+            }
+
+            .contact-right {
+                padding: 15px;
+            }
+        }
+
+
+        /* =====================================================
+           VERY SMALL
+        ===================================================== */
+
+        @media (max-width: 375px) {
+
+            .logo-img {
+                width: 82px;
+            }
+
+            .container {
+                padding-left: 9px;
+                padding-right: 9px;
+            }
+
+            .hero-content h1 {
+                font-size: 22px;
+            }
+
+            .hero-content p {
+                font-size: 13px;
+            }
+
+            .feature-content h2 {
+                font-size: 19px;
+            }
+
+            .feature-content p {
+                font-size: 12.5px;
+            }
+
+            .gallery-product {
+                flex: 0 0 155px;
+
+                width: 155px;
+            }
+
+            .gallery-item {
+                width: 155px;
+
+                height: 185px;
+            }
+
+            .gallery-item img {
+                height: 150px;
+            }
+
+            .gallery-product p {
+                font-size: 11.5px;
+            }
+
+            .info-box {
+                gap: 11px;
+            }
+
+            .info-box img {
+                width: 44px;
+                height: 44px;
+            }
+
+            .info-box h4 {
+                font-size: 16px;
+            }
+
+            .info-box p {
+                font-size: 12px;
+            }
+        }
+
+
+        /* =====================================================
+           320px
+        ===================================================== */
+
+        @media (max-width: 320px) {
+
+            .header {
+                padding: 0 7px;
+            }
+
+            .logo-img {
+                width: 75px;
+            }
+
+            .menu-toggle {
+                width: 36px;
+                height: 36px;
+            }
+
+            .menu-toggle span {
+                width: 22px;
+            }
+
+            .container {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            .hero-content h1 {
+                font-size: 20px;
+            }
+
+            .gallery-product {
+                flex-basis: 145px;
+
+                width: 145px;
+            }
+
+            .gallery-item {
+                width: 145px;
+
+                height: 175px;
+            }
+
+            .gallery-item img {
+                height: 140px;
+            }
+
+            /* PATHY */
+
+            .pathy-image {
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-     <div class="header">
 
-    <div class="header-left">
-        <img src="./images/Picsart_26-07-21_16-54-11-199.png"
-             alt="Logo"
-             class="logo-img">
-    </div>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-    <!-- Hamburger Button -->
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <header class="header">
 
-    <div class="header-right" id="mobileMenu">
-        <nav class="nav">
-            <div class="nav-links">
-                <a href="./index.html">Home</a>
-                <a href="./about.html">About</a>
-                <a href="./gallery.html">Gallery</a>
+        <div class="header-left">
 
-                <div class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Products</a>
+            <a href="./index.html">
 
-                    <div class="dropdown-content">
-                        <a href="6 gutter.html">6 Gutter</a>
-                        <a href="9 gutter.html">9 Gutter</a>
+                <img
+                    src="./images/Picsart_26-07-21_16-54-11-199.png"
+                    alt="Star Supreme Logo"
+                    class="logo-img">
+
+            </a>
+
+        </div>
+
+
+        <!-- Hamburger -->
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open Menu"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- Navigation -->
+
+        <div class="header-right" id="mobileMenu">
+
+            <nav class="nav">
+
+                <div class="nav-links">
+
+                    <a href="./index.html">Home</a>
+
+                    <a href="./about.html">About</a>
+
+                    <a href="./gallery.html">Gallery</a>
+
+
+                    <!-- Products -->
+
+                    <div class="dropdown" id="productDropdown">
+
+                        <a
+                            href="javascript:void(0)"
+                            class="dropbtn"
+                            id="productButton">
+
+                            Products
+
+                        </a>
+
+                        <div class="dropdown-content">
+
+                            <a href="6 gutter.html">
+                                6 Gutter
+                            </a>
+
+                            <a href="9 gutter.html">
+                                9 Gutter
+                            </a>
+
+                        </div>
+
                     </div>
+
+
+                    <a href="./contact.html">
+                        Contact
+                    </a>
+
                 </div>
 
-                <a href="./contact.html">Contact</a>
-            </div>
-        </nav>
-    </div>
+            </nav>
 
-</div>
-    
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
     <main class="container">
+
+
+        <!-- HERO -->
 
         <section class="hero">
 
@@ -67,7 +1946,7 @@
 
                 <h1>
                     RAIN WATER GUTTER<br>
-                    DURABLE  RELIABLE<br>
+                    DURABLE RELIABLE<br>
                     BUILT FOR EVERY SEASON.
                 </h1>
 
@@ -76,3526 +1955,656 @@
                     protecting your home and foundation.
                 </p>
 
-              
             </div>
 
-            <div class="hero-image ">
-                <img src="images/9-gutter-banner.jpg" alt="" class="pathy-img">
+
+            <div class="hero-image">
+
+                <img
+                    src="./images/9-gutter-banner.jpg"
+                    alt="9 inch Rain Water Gutter"
+                    class="pathy-img"
+                    loading="eager"
+                    decoding="async">
+
             </div>
 
         </section>
 
-           <section class="feature-section">
+
+
+        <!-- FEATURE -->
+
+        <section class="feature-section">
 
             <div class="feature-image">
 
-                <img src="images/gutter image-01.jpg" alt="">
+                <img
+                    src="./images/gutter image-01.jpg"
+                    alt="9 inch Square uPVC Rain Water Gutter"
+                    loading="lazy"
+                    decoding="async">
 
             </div>
 
+
             <div class="feature-content">
 
-                <h2>9” Square uPvc Rain Water Gutter</h2>
+                <h2>
+                    9” Square uPVC Rain Water Gutter
+                </h2>
 
                 <p>
-                   Our Wide 9” Specially designed rain water gutter system provides effective management 
-                   of collectiong large amout of rain water from the roofs. Their square profile provides ample 
-                   capacity, suitable for homes or buildings with expansive roof areas or areas prone to heavy 
-                   rainfall. Made from durable materials like aluminum or galvanized steel, these gutters offer 
-                   long-lasting performance and resistance to weathering. Their wider width ensures efficient 
-                   water flow, minimizing overflow and potential water damage to the structure's foundation. 
-                   Ideal for both residential and commercial applications, 6" square rainwater gutters combine 
-                   functionality with durability to provide reliable rainwater management in various weather conditions. . 
+                    Our wide 9” specially designed rain water gutter system
+                    provides effective management of collecting large amounts
+                    of rain water from roofs. Its square profile provides ample
+                    capacity, suitable for homes or buildings with expansive
+                    roof areas or areas prone to heavy rainfall. Made from
+                    durable materials, these gutters offer long-lasting
+                    performance and resistance to weathering. Their wider width
+                    ensures efficient water flow, minimizing overflow and
+                    potential water damage to the structure's foundation.
+                    Ideal for both residential and commercial applications,
+                    these square rainwater gutters combine functionality with
+                    durability to provide reliable rainwater management in
+                    various weather conditions.
                 </p>
-
-                
-
-           
 
             </div>
 
         </section>
 
-    <!-- <div class="gallery-tabs">
-    <button class="tab-btn active" onclick="showFittings()">Fittings</button>
-    <button class="tab-btn" onclick="showPathy()">Pathy</button>
-</div> -->
-
-<div class="one">
-<h2>Gutter Fittings</h2>
-</div>
- 
-<div class="gallery-wrapper">
 
 
-    <div class="gallery-container" id="gallery1">
-        <div class="pathy-6"><img src="./images/9-gutter-pathy.png"></div>
-        
-    </div>
-</div>
-   <h2>Gutter Fittings</h2>
-<div class="gallery-wrapper">
-    <button class="scroll-btn left" onclick="scrollGallery(-300)">
-        &#10094;
-    </button>
-    <div class="gallery-container" id="gallery">
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/uPvc Bracket-9.png" alt="uPVC Bracket">
+        <!-- =================================================
+             GUTTER PATHY
+        ================================================== -->
+
+        <section class="pathy-gallery">
+
+            <div class="section-title">
+
+                <h2>
+                    9 Gutter Pathy
+                </h2>
+
             </div>
-            <p>uPVC Bracket</p>
-        </div>
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/uPvc Bracket with GI Extension-9.png" alt="uPVC Bracket with GI Extension">
+
+
+            <div class="pathy-image">
+
+                <img
+                    src="./images/9-gutter-pathy.png"
+                    alt="9 inch Gutter Fittings"
+                    loading="lazy"
+                    decoding="async">
+
             </div>
-            <p>uPVC Bracket with GI Extension</p>
-        </div>
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/Middle Drop-9.png" alt="Middle Drop">
+
+        </section>
+
+
+
+        <!-- =================================================
+             FITTINGS
+        ================================================== -->
+
+        <section class="fittings-section">
+
+            <div class="section-title">
+
+                <h2>
+                    Gutter Fittings
+                </h2>
+
             </div>
-            <p>Middle Drop</p>
-        </div>
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/Gutter Joint-9.png" alt="Gutter Joint">
+
+
+            <div class="gallery-wrapper">
+
+
+                <!-- LEFT -->
+
+                <button
+                    class="scroll-btn left"
+                    id="galleryLeft"
+                    aria-label="Previous products">
+
+                    &#10094;
+
+                </button>
+
+
+                <!-- GALLERY -->
+
+                <div
+                    class="gallery-container"
+                    id="gallery">
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/uPvc Bracket-9.png"
+                                alt="uPVC Bracket"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            uPVC Bracket
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/uPvc Bracket with GI Extension-9.png"
+                                alt="uPVC Bracket with GI Extension"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            uPVC Bracket with GI Extension
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/Middle Drop-9.png"
+                                alt="Middle Drop"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            Middle Drop
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/Gutter Joint-9.png"
+                                alt="Gutter Joint"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            Gutter Joint
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/G I Bracket-9.png"
+                                alt="GI Bracket"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            GI Bracket
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/EndDrop-9.png"
+                                alt="End Drop"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            End Drop
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/End Cap-9.png"
+                                alt="End Cap"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            End Cap
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/Elbow Joint Corner Joint-9.png"
+                                alt="Elbow Joint Corner Joint"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            Elbow Joint Corner Joint
+                        </p>
+
+                    </div>
+
+
+                    <div class="gallery-product">
+
+                        <div class="gallery-item">
+
+                            <img
+                                src="./images/Elbow Drop Corner Drop-9.png"
+                                alt="Elbow Drop Corner Drop"
+                                loading="lazy"
+                                decoding="async">
+
+                        </div>
+
+                        <p>
+                            Elbow Drop Corner Drop
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT -->
+
+                <button
+                    class="scroll-btn right"
+                    id="galleryRight"
+                    aria-label="Next products">
+
+                    &#10095;
+
+                </button>
+
             </div>
-            <p>Gutter Joint</p>
-        </div>
 
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/G I Bracket-9.png" alt="GI Bracket">
-            </div>
-            <p>GI Bracket</p>
-        </div>
+        </section>
 
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/EndDrop-9.png" alt="End Drop">
-            </div>
-            <p>End Drop</p>
-        </div>
-
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/End Cap-9.png" alt="End Cap">
-            </div>
-            <p>End Cap</p>
-        </div>
-
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/Elbow Joint Corner Joint-9.png" alt="Elbow Joint Corner Joint">
-            </div>
-            <p>Elbow Joint Corner Joint</p>
-        </div>
-
-        <div class="gallery-product">
-            <div class="gallery-item">
-                <img src="./images/Elbow Drop Corner Drop-9.png" alt="Elbow Drop Corner Drop">
-            </div>
-            <p>Elbow Drop Corner Drop</p>
-        </div>
-
-    </div>
-
-    <button class="scroll-btn right" onclick="scrollGallery(300)">
-        &#10095;
-    </button>
-
-</div>
-
-</main>
+    </main>
 
 
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
 
     <section class="contact-section">
-    <div class="contact-container">
 
-        <div class="contact-left">
-            <h5>GET IN TOUCH</h5>
-            <h2>Need a Rain Water Gutter Solution?</h2>
-            <p>
-                Whether you're building a new home or replacing an old gutter
-                system, our experts are ready to help. Contact us today for a
-                free consultation and quotation.
-            </p>
+        <div class="contact-container">
 
-            <div class="contact-info">
-                <div class="info-box">
-                    <img src="images/phone-call.png" alt="">
-                    <div>
-                        <h4>Phone</h4>
-                        <p>+91 98765 43210</p>
+
+            <div class="contact-left">
+
+                <h5>
+                    GET IN TOUCH
+                </h5>
+
+                <h2>
+                    Need a Rain Water Gutter Solution?
+                </h2>
+
+                <p>
+                    Whether you're building a new home or replacing an old
+                    gutter system, our experts are ready to help. Contact us
+                    today for a free consultation and quotation.
+                </p>
+
+
+                <div class="contact-info">
+
+                    <div class="info-box">
+
+                        <img
+                            src="./images/phone-call.png"
+                            alt="Phone"
+                            loading="lazy">
+
+                        <div>
+
+                            <h4>
+                                Phone
+                            </h4>
+
+                            <p>
+                                +91 98765 43210
+                            </p>
+
+                        </div>
+
                     </div>
+
+
+                    <div class="info-box">
+
+                        <img
+                            src="./images/mail.png"
+                            alt="Email"
+                            loading="lazy">
+
+                        <div>
+
+                            <h4>
+                                Email
+                            </h4>
+
+                            <p>
+                                info@starsupreme.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <img
+                            src="./images/location.png"
+                            alt="Location"
+                            loading="lazy">
+
+                        <div>
+
+                            <h4>
+                                Address
+                            </h4>
+
+                            <p>
+                                Kothamangalam, Kerala, India
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="info-box">
-                    <img src="images/mail.png" alt="">
-                    <div>
-                        <h4>Email</h4>
-                        <p>info@starsupreme.com</p>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <img src="images/location.png" alt="">
-                    <div>
-                        <h4>Address</h4>
-                        <p>Kothamangalam, Kerala, India</p>
-                    </div>
-                </div>
             </div>
+
+
+            <div class="contact-right">
+
+                <form>
+
+                    <input
+                        type="text"
+                        placeholder="Your Name"
+                        required>
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        required>
+
+                    <input
+                        type="tel"
+                        placeholder="Phone Number">
+
+                    <textarea
+                        rows="6"
+                        placeholder="Your Message"></textarea>
+
+                    <button type="submit">
+                        Send Message
+                    </button>
+
+                </form>
+
+            </div>
+
         </div>
 
-        <div class="contact-right">
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="tel" placeholder="Phone Number">
-                <textarea rows="6" placeholder="Your Message"></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-
-    </div>
-</section>
-
- <script>
- 
+    </section>
 
 
 
-function toggleMenu() {
-    const menu = document.getElementById("mobileMenu");
-    const button = document.querySelector(".menu-toggle");
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
-    menu.classList.toggle("active");
-    button.classList.toggle("active");
-}
+    <script>
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const mobileMenu =
+            document.getElementById("mobileMenu");
+
+        const productDropdown =
+            document.getElementById("productDropdown");
+
+        const productButton =
+            document.getElementById("productButton");
 
 
-function scrollGallery(distance) {
-    document.getElementById("gallery").scrollBy({
-        left: distance,
-        behavior: "smooth"
-    });
-}
+        /* MOBILE MENU */
 
-</script>
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen =
+                mobileMenu.classList.toggle("active");
+
+            menuToggle.classList.toggle("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                isOpen
+            );
+
+        });
+
+
+        /* MOBILE PRODUCT DROPDOWN */
+
+        productButton.addEventListener("click", function (event) {
+
+            if (window.innerWidth <= 767) {
+
+                event.preventDefault();
+
+                productDropdown.classList.toggle("open");
+
+            }
+
+        });
+
+
+        /* CLOSE MENU AFTER LINK CLICK */
+
+        document
+            .querySelectorAll(".nav-links > a")
+            .forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    if (window.innerWidth <= 767) {
+
+                        mobileMenu.classList.remove("active");
+
+                        menuToggle.classList.remove("active");
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                });
+
+            });
+
+
+        /* CLOSE MENU ON DESKTOP */
+
+        window.addEventListener("resize", function () {
+
+            if (window.innerWidth > 767) {
+
+                mobileMenu.classList.remove("active");
+
+                menuToggle.classList.remove("active");
+
+                productDropdown.classList.remove("open");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        });
+
+
+        /* GALLERY SCROLL */
+
+        const gallery =
+            document.getElementById("gallery");
+
+        const leftButton =
+            document.getElementById("galleryLeft");
+
+        const rightButton =
+            document.getElementById("galleryRight");
+
+
+        leftButton.addEventListener("click", function () {
+
+            gallery.scrollBy({
+
+                left: -300,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+
+        rightButton.addEventListener("click", function () {
+
+            gallery.scrollBy({
+
+                left: 300,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+
+        /* TOUCH / MOUSE DRAG */
+
+        let isDown = false;
+
+        let startX;
+
+        let scrollLeft;
+
+
+        gallery.addEventListener("mousedown", function (e) {
+
+            isDown = true;
+
+            gallery.style.cursor = "grabbing";
+
+            startX = e.pageX - gallery.offsetLeft;
+
+            scrollLeft = gallery.scrollLeft;
+
+        });
+
+
+        gallery.addEventListener("mouseleave", function () {
+
+            isDown = false;
+
+            gallery.style.cursor = "grab";
+
+        });
+
+
+        gallery.addEventListener("mouseup", function () {
+
+            isDown = false;
+
+            gallery.style.cursor = "grab";
+
+        });
+
+
+        gallery.addEventListener("mousemove", function (e) {
+
+            if (!isDown) return;
+
+            e.preventDefault();
+
+            const x =
+                e.pageX - gallery.offsetLeft;
+
+            const walk =
+                (x - startX) * 1.5;
+
+            gallery.scrollLeft =
+                scrollLeft - walk;
+
+        });
+
+    </script>
+
 </body>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-.header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 90px;
-    background: rgba(31,43,56,0.95);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 70px;
-    z-index: 1000;
-}
-
-    body{
-    overflow-x:hidden;
-}
-
-.header-left{
-    display: flex;
-    align-items: center;
-}
-
-.logo-img{
-    width: 170px;
-    height: auto;
-}
-
-.header-right{
-    display: flex;
-    align-items: center;
-}
-
-.nav{
-    display: flex;
-    align-items: center;
-}
-
-.nav-links{
-    display: flex;
-    align-items: center;
-    gap: 35px;
-}
-
-.nav-links a,
-.dropbtn{
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    transition: .3s;
-    cursor: pointer;
-}
-
-.nav-links a:hover,
-.dropbtn:hover{
-    color: #74d3ff;
-}
-
-.nav-links a.active{
-    color: #74d3ff;
-}
-
-/* Dropdown */
-
-.dropdown{
-    position: relative;
-}
-
-.dropdown-content{
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 180px;
-    background: #243241;
-    border-radius: 10px;
-    display: none;
-    padding: 10px 0;
-    box-shadow: 0 10px 25px rgba(0,0,0,.3);
-}
-
-.dropdown-content a{
-    display: block;
-    padding: 12px 18px;
-    color: #fff;
-}
-
-.dropdown-content a:hover{
-    background: #32475f;
-    color: #74d3ff;
-}
-
-.dropdown:hover .dropdown-content{
-    display: block;
-}
-
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:'Inter',sans-serif;
-    background:#081521;
-    color:#fff;
-    line-height:1.6;
-}
-
-img{
-    width:20%;
-    display:block;
-}
-
-a{
-    text-decoration:none;
-}
-
-ul{
-    list-style:none;
-}
-
-/*==================================================
-Container
-==================================================*/
-
-.container{
-    width:100%;
-    max-width:1600px;
-    margin:auto;
-    padding:40px 60px;
-}
-
-/*==================================================
-Hero
-==================================================*/
-
-.hero{
-    display:grid;
-    grid-template-columns:42% 58%;
-    gap:45px;
-    align-items:center;
-    margin-bottom:70px;
-}
-
-.hero-content h1{
-    font-size:44px;
-    font-weight:400;
-    line-height:1.07;
-    color:#2f8fff;
-    text-transform:uppercase;
-    margin-bottom:28px;
-}
-
-.hero-content p{
-    max-width:460px;
-    color:#b7c3d3;
-    font-size:18px;
-    margin-bottom:35px;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-    padding:16px 34px;
-    background:#2f8fff;
-    color:#fff;
-    border-radius:40px;
-    font-weight:600;
-    transition:.35s;
-}
-
-.btn:hover{
-    background:#1f6fd8;
-    transform:translateY(-3px);
-}
-
-.hero-image img{
-    height:520px;
-    object-fit:cover;
-    border-radius:22px;
-}
-
-/*==================================================
-Slider Buttons
-==================================================*/
-
-.slider-btns{
-    display:flex;
-    gap:12px;
-}
-
-.slider-btns button{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    border:1px solid #2f8fff;
-    background:transparent;
-    color:#2f8fff;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.slider-btns button:hover{
-    background:#2f8fff;
-    color:#fff;
-}
-/* scroll */
-    h2{
-    /* margin-left:45px; */
-    margin-bottom: 23px;
-    color: #2f8fff;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: .5px;
-    font-family:Arial, Helvetica, sans-serif;
-}
-body {
-    background-color: #000;
-    margin: 0;
-    padding: 40px 0;
-    font-family: Arial, sans-serif;
-}
-/* .gallery-tabs{
-    width: 103%;      
-    margin: 0 auto 20px;  
-    display: flex;
-    justify-content: flex-end;
-    margin-left: -250px;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: -50px;
-}
-
-.tab-btn{
-    padding: 12px 28px;
-    background: transparent;
-    color: #2f8fff;
-    border: 2px solid #2f8fff;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.35s ease;
-}
-
-.tab-btn:hover{
-    background: #2f8fff;
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(47,143,255,.35);
-    transform: translateY(-3px);
-}
-
-.tab-btn.active{
-    background: #2f8fff;
-    color: #fff;
-} */
-.pathy-img{width: 100%;}
-    .gallery-wrapper{
-    position:relative;
-    width:100%;
-    margin:auto;
-    display:flex;
-    align-items:center;
-}
-/* =========================================
-   PRODUCT GALLERY
-========================================= */
-
-.gallery-container {
-    overflow-x: auto;
-    display: flex;
-    gap: 17px;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    white-space: nowrap;
-    flex: 1;
-    padding: 10px 5px 20px;
-}
-
-.gallery-container::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* Product wrapper */
-
-.gallery-product {
-    flex: 0 0 250px;
-    width: 250px;
-    text-align: center;
-}
-
-
-/* Image card */
-
-.gallery-item {
-    width: 100%;
-    height: 300px;
-    padding: 20px;
-
-    background: #081521;
-    border: 1px solid #2f8fff;
-    border-radius: 14px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    transition: all 0.35s ease;
-    cursor: pointer;
-}
-
-
-/* Image */
-
-.gallery-item img {
-    width: 75%;
-    height: 250px;
-    object-fit: contain;
-    border-radius: 12px;
-
-    transition: transform 0.35s ease;
-}
-
-
-/* Card hover */
-
-.gallery-item:hover {
-    border-color: #66b3ff;
-    box-shadow: 0 12px 25px rgba(47, 143, 255, 0.35);
-    transform: translateY(-8px);
-    background: #10253b;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.08);
-}
-
-
-/* =========================================
-   PRODUCT NAME OUTSIDE CARD
-========================================= */
-
-.gallery-product > p {
-    margin-top: 14px;
-    margin-bottom: 0;
-    width:221px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.4;
-
-    white-space: normal;
-    text-align: center;
-}
-/* Hover Effect */
-.gallery-container:hover{
-
-    transform: translateY(-3px);
-}
-
-.gallery-container::-webkit-scrollbar{
-    display:none;
-}
-
-@media (max-width: 768px) {
-
-    .gallery-container {
-        gap: 18px;
-    }
-
-    .gallery-product {
-        flex: 0 0 210px;
-        width: 210px;
-    }
-
-    .gallery-item {
-        height: 250px;
-        padding: 15px;
-    }
-
-    .gallery-item img {
-        height: 210px;
-        width: 75%;
-    }
-
-    .gallery-product > p {
-        font-size: 15px;
-        margin-top: 12px;
-    }
-}
-
-
-@media (max-width: 576px) {
-
-    .gallery-container {
-        gap: 15px;
-    }
-
-    .gallery-product {
-        flex: 0 0 180px;
-        width: 180px;
-    }
-
-    .gallery-item {
-        height: 220px;
-        padding: 12px;
-    }
-
-    .gallery-item img {
-        height: 185px;
-    }
-
-    .gallery-product > p {
-        font-size: 14px;
-    }
-}
-
-
-@media (max-width: 400px) {
-
-    .gallery-product {
-        flex: 0 0 165px;
-        width: 165px;
-    }
-
-    .gallery-item {
-        height: 200px;
-    }
-
-    .gallery-item img {
-        height: 170px;
-    }
-
-    .gallery-product > p {
-        font-size: 13px;
-    }
-}
-
-
-.scroll-btn{
-    position:absolute;
-    top:-14%;
-    transform:translateY(-50%);
-    width:45px;
-    height:45px;
-    border:none;
-    border-radius:50%;
-    background:#fff;
-
-    box-shadow:0 4px 10px rgba(0,0,0,.25);
-    cursor:pointer;
-    font-size:16px;
-    z-index:100;
-    transition:.3s;
-}
-
-.scroll-btn:hover{
-    background:#222;
-    color:#fff;
-}
-
-.left{
-    right:97px;
-}
-
-.right{
-    right:44px;
-}
-
-
-
-
-   .gallery-item{
-    flex: 0 0 auto;
-    width: 250px;
-    margin: 0 12px;
-    padding: 15px;
-    background: #081521;
-    border: 1px solid rgba(47, 143, 255, .35);
-    border-radius: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.35s ease;
-    cursor: pointer;
-}
-
-.gallery-item:hover{
-    border-color: #2f8fff; 
-    box-shadow: 0 12px 25px rgba(47, 143, 255, 0.35);
-    transform: translateY(-8px);
-    background: #10253b;
-}
-
-.gallery-item img{
-    width: 70%;
-    height: 270px;
-    object-fit: contain;
-    border-radius: 12px;
-    transition: transform 0.35s ease;
-}
-
-.gallery-item:hover img{
-    transform: scale(1.08);
-}
-.gallery-item{
-    border: 1px solid #2f8fff;
-    border-radius: 14px;
-}
-
-.gallery-item:hover{
-    border-color: #66b3ff;
-}
-
-/* scroll */
-/*==================================================
-Product Grid
-==================================================*/
-/* 
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:28px;
-} */
-.product-grid{
-    display: flex;
-    overflow-x: auto;
-    gap: 29px;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.product-grid::-webkit-scrollbar{
-    display: none;
-}
-
-.product-card{
-    flex: 0 0 220px;
-}
-/*==================================================
-Product Card
-==================================================*/
-
-.product-card{
-    transition:.35s;
-}
-
-.product-card:hover{
-    transform:translateY(-8px);
-}
-
-.product-card .image{
-    position:relative;
-    border:1px solid rgba(47,143,255,.35);
-    background:#0d2032;
-    border-radius:14px;
-    overflow:hidden;
-    padding:28px;
-}
-
-.product-card .image img{
-    height:230px;
-    object-fit:contain;
-    transition:.4s;
-}
-
-.product-card:hover img{
-    transform:scale(1.05);
-}
-
-/*==================================================
-Wishlist
-==================================================*/
-
-.wishlist{
-    position:absolute;
-    right:16px;
-    top:16px;
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.25);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#ffffff;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.wishlist:hover{
-    background:#2f8fff;
-    border-color:#2f8fff;
-}
-
-/*==================================================
-Card Text
-==================================================*/
-
-.product-card h3{
-    margin-top:12px;
-    margin-bottom:8px;
-    font-size:12px;
-    /* font-weight:600; */
-    color:#ffffff;
-}
-
-.price{
-    color:#2f8fff;
-    font-size:22px;
-    font-weight:700;
-}
-
-/*==================================================
-Hover Glow
-==================================================*/
-
-.product-card .image:hover{
-    border-color:#2f8fff;
-    box-shadow:0 0 30px rgba(47,143,255,.20);
-
-}
-
-/*==================================================
-Spacing
-==================================================*/
-
-.feature-section{
-    margin-top:80px;
-}
-/*=========================================
-FEATURE SECTION
-=========================================*/
-
-.feature-section{
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    align-items:center;
-    gap:45px;
-    margin:90px 0;
-}
-
-.feature-section.reverse{
-    grid-template-columns:.9fr 1.1fr;
-}
-
-/*=========================================
-Feature Image
-=========================================*/
-
-.feature-image{
-    overflow:hidden;
-    border-radius:18px;
-    border:1px solid rgba(47,143,255,.18);
-}
-
-.feature-image img{
-    width:100%;
-    height:470px;
-    object-fit:cover;
-    transition:.5s;
-}
-
-.feature-image:hover img{
-    transform:scale(1.05);
-}
-
-/*=========================================
-Feature Content
-=========================================*/
-
-.feature-content{
-    padding:10px 0;
-}
-
-.feature-content h2{
-    color:#2f8fff;
-    font-size:24px;
-    font-weight:700;
-    margin-bottom:20px;
-    text-transform:uppercase;
-}
-
-.feature-content p{
-    color:#b9c4cf;
-    font-size:14px;
-    line-height:1.9;
-    margin-bottom:30px;
-}
-
-/*=========================================
-Checklist
-=========================================*/
-
-.feature-content ul{
-    margin-bottom:35px;
-}
-
-.feature-content ul li{
-    position:relative;
-    padding-left:34px;
-    margin-bottom:16px;
-    color:#ffffff;
-    font-size:14px;
-    /* font-weight:500; */
-}
-
-.feature-content ul li::before{
-    content:"\f00c";
-    font-family:"Font Awesome 6 Free";
-    font-weight:900;
-    position:absolute;
-    left:0;
-    top:0;
-    color:#2f8fff;
-    font-size:18px;
-}
-
-/*=========================================
-Thumbnail Gallery
-=========================================*/
-
-.thumb-gallery{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.thumb-gallery img{
-    width:100%;
-    height:115px;
-    object-fit:cover;
-    border-radius:12px;
-    border:1px solid rgba(47,143,255,.25);
-    cursor:pointer;
-    transition:.35s;
-}
-
-.thumb-gallery img:hover{
-    transform:translateY(-6px);
-    border-color:#2f8fff;
-    box-shadow:0 12px 30px rgba(47,143,255,.20);
-}
-
-/*=========================================
-Second Section Layout
-=========================================*/
-
-.feature-section.reverse .feature-content{
-    order:1;
-}
-
-.feature-section.reverse .feature-image{
-    order:2;
-}
-
-/*=========================================
-Section Divider
-=========================================*/
-
-.feature-section + .feature-section{
-    padding-top:70px;
-    border-top:1px solid rgba(255,255,255,.08);
-}
-
-/*=========================================
-Animation
-=========================================*/
-
-.feature-image,
-.feature-content{
-    transition:.4s ease;
-}
-
-.feature-section:hover .feature-content{
-    transform:translateY(-4px);
-}
-
-/*=========================================
-Utility
-=========================================*/
-
-.text-blue{
-    color:#2f8fff;
-}
-
-.text-light{
-    color:#b9c4cf;
-}
-
-.mt-20{
-    margin-top:20px;
-}
-
-.mt-30{
-    margin-top:30px;
-}
-
-.mb-20{
-    margin-bottom:20px;
-}
-
-.mb-30{
-    margin-bottom:30px;
-}
-
-/*=========================================
-Scrollbar (Optional)
-=========================================*/
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#081521;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#2f8fff;
-    border-radius:20px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background:#56a8ff;
-}
-/*=========================================
-Large Desktop (1600px)
-=========================================*/
-@media (max-width:1600px){
-
-.container{
-    max-width:1400px;
-    padding:130px 40px;
-}
-
-.gallery-item {
-    border: 1px solid #2f8fff;
-    border-radius: 14px;
-    width: 255px;
-}
-.gallery-item {
-    flex: 0 0 auto;
-    width: 221px;
-    height: 281px;
-    margin: 0 -1px;
-    padding: 15px;
-    background: #081521;
-    border: 1px solid rgba(47, 143, 255, .35);
-    border-radius: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.35s ease;
-    cursor: pointer;
-}
-
-.hero-content h1{
-    font-size:52px;
-}
-
-.hero-image img{
-    height:373px;
-    width: 94%;
-}
-
-.feature-image img{
-    height:391px;
-}
-
-}
-
-/*=========================================
-Laptop (1366px)
-=========================================*/
-@media (max-width:1366px){
-
-.container{
-    padding:35px;
-}
-
-.hero{
-    gap:35px;
-}
-
-.hero-content h1{
-    font-size:46px;
-}
-
-.hero-content p{
-    font-size:16px;
-}
-
-.hero-image img{
-    height:420px;
-}
-
-.product-grid{
-    gap:20px;
-}
-
-.product-card .image{
-    padding:20px;
-}
-
-.product-card .image img{
-    height:180px;
-}
-
-.product-card h3{
-    font-size:20px;
-}
-
-.price{
-    font-size:20px;
-}
-
-.feature-section{
-    gap:35px;
-}
-
-.feature-image img{
-    height:380px;
-}
-
-.feature-content h2{
-    font-size:30px;
-}
-
-}
-
-/*=========================================
-Tablet Landscape (1199px)
-=========================================*/
-@media (max-width:1199px){
-
-.hero{
-    grid-template-columns:1fr;
-}
-
-.hero-image{
-    order:-1;
-}
-
-.hero-image img{
-    height:450px;
-}
-
-.hero-content{
-    text-align:center;
-}
-
-.hero-content p{
-    margin:auto auto 30px;
-}
-
-.product-grid{
-    grid-template-columns:repeat(2,1fr);
-}
-
-.feature-section,
-.feature-section.reverse{
-    grid-template-columns:1fr;
-}
-
-.feature-section.reverse .feature-content{
-    order:2;
-}
-
-.feature-section.reverse .feature-image{
-    order:1;
-}
-
-.feature-image img{
-    height:430px;
-}
-
-}
-
-/*=========================================
-Tablet (992px)
-=========================================*/
-@media (max-width:992px){
-
-.container{
-    padding:30px;
-}
-
-.hero-content h1{
-    font-size:40px;
-}
-
-.hero-image img{
-    height:380px;
-}
-
-.section-header{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:15px;
-}
-
-.slider-btns{
-    align-self:flex-end;
-}
-
-.feature-content h2{
-    font-size:28px;
-}
-
-.feature-content p{
-    font-size:16px;
-}
-
-.thumb-gallery{
-    grid-template-columns:repeat(3,1fr);
-}
-
-}
-
-/*=========================================
-Mobile Landscape (768px)
-=========================================*/
-@media (max-width:768px){
-
-.container{
-    padding:20px;
-}
-
-.hero{
-    gap:25px;
-    margin-bottom:50px;
-}
-
-.hero-content h1{
-    font-size:34px;
-    line-height:1.2;
-}
-
-.hero-content p{
-    font-size:15px;
-}
-
-.hero-image img{
-    height:300px;
-}
-
-.btn{
-    padding:14px 26px;
-    font-size:15px;
-}
-
-.product-grid{
-    grid-template-columns:1fr;
-}
-
-.product-card .image img{
-    height:220px;
-}
-
-.product-card h3{
-    font-size:18px;
-}
-
-.price{
-    font-size:18px;
-}
-
-.feature-section{
-    margin:60px 0;
-    gap:30px;
-}
-
-.feature-image img{
-    height:300px;
-}
-
-.feature-content h2{
-    font-size:26px;
-}
-
-.thumb-gallery{
-    gap:12px;
-}
-
-.thumb-gallery img{
-    height:90px;
-}
-
-}
-
-/*=========================================
-Mobile (576px)
-=========================================*/
-@media (max-width:576px){
-
-.container{
-    padding:15px;
-}
-
-.hero-content{
-    text-align:left;
-}
-
-.hero-content h1{
-    font-size:28px;
-}
-
-.hero-content p{
-    font-size:14px;
-}
-
-.hero-image img{
-    height:240px;
-    border-radius:14px;
-}
-
-.btn{
-    width:100%;
-    justify-content:center;
-}
-
-.section-header h2{
-    font-size:20px;
-}
-
-.slider-btns{
-    gap:8px;
-}
-
-.slider-btns button{
-    width:38px;
-    height:38px;
-}
-
-.product-card .image{
-    padding:18px;
-}
-
-.product-card .image img{
-    height:180px;
-}
-
-.feature-content h2{
-    font-size:22px;
-}
-
-.feature-content p{
-    font-size:14px;
-}
-
-.feature-content ul li{
-    font-size:15px;
-    margin-bottom:12px;
-}
-
-.thumb-gallery{
-    grid-template-columns:1fr;
-}
-
-.thumb-gallery img{
-    height:170px;
-}
-
-}
-
-/*=========================================
-Small Mobile (400px)
-=========================================*/
-@media (max-width:400px){
-
-.hero-content h1{
-    font-size:24px;
-}
-
-.hero-image img{
-    height:200px;
-}
-
-.btn{
-    font-size:14px;
-    padding:12px 18px;
-}
-
-.product-card h3{
-    font-size:17px;
-}
-
-.price{
-    font-size:17px;
-}
-
-.feature-content h2{
-    font-size:20px;
-}
-
-.feature-image img{
-    height:220px;
-}
-
-.thumb-gallery img{
-    height:140px;
-}
-
-}
-.one h2{
-    /* margin-left:45px; */
-    margin-bottom: 15px;
-    color: #2f8fff;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: .5px;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-.contact-section{
-    background:#1f2b38;
-    padding:100px 8%;
-    top:100px;
-    position: relative;
-}
-
-.contact-container{
-    max-width:1300px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
-    align-items:center;
-}
-
-.contact-left h5{
-    color:#2b7cff;
-    font-size:18px;
-    letter-spacing:2px;
-    margin-bottom:15px;
-}
-
-.contact-left h2{
-    font-size:42px;
-    margin-bottom:20px;
-    color:white;
-}
-
-.contact-left p{
-    font-size:18px;
-    color:white;
-    line-height:1.8;
-    margin-bottom:35px;
-}
-
-.contact-info{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-.info-box{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
-
-.info-box img{
-    width:55px;
-    height:55px;
-    padding:12px;
-    background:#2b7cff;
-    border-radius:50%;
-}
-
-.info-box h4{
-    margin:0;
-    font-size:20px;
-    color:#fff;
-}
-
-.info-box p{
-    margin:4px 0 0;
-    color:#dbd6d6;
-    font-size:16px;
-}
-
-/* Form */
-
-.contact-right{
-    background:#1d2e40;
-    padding:40px;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
-    border: solid 1px #1565d8;
-}
-
-.contact-right form{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-}
-
-.contact-right input,
-.contact-right textarea{
-    width:100%;
-    padding:16px;
-    border:1px solid #1e4063;
-    border-radius:10px;
-    font-size:16px;
-    outline:none;
-    transition:.3s;
-    box-sizing:border-box;
-    background: #1f2b38;
-}
-
-.contact-right input:focus,
-.contact-right textarea:focus{
-    border-color:#2b7cff;
-}
-
-.contact-right button{
-    background:#0d316b;
-    color:#fff;
-    border:none;
-    padding:16px;
-    font-size:18px;
-    font-weight:600;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.contact-right button:hover{
-    background:#1565d8;
-}
-
-/* Responsive */
-
-@media(max-width:992px){
-
-    .contact-container{
-        grid-template-columns:1fr;
-    }
-
-    .contact-left{
-        text-align:center;
-    }
-
-    .info-box{
-        justify-content:center;
-    }
-}
-
-@media(max-width:768px){
-
-    .contact-section{
-        padding:70px 20px;
-    }
-
-    .contact-left h2{
-        font-size:32px;
-    }
-
-    .contact-right{
-        padding:25px;
-    }
-
-}
-
-
-
-/* =========================================================
-   1920px LARGE DESKTOP RESPONSIVE
-   ========================================================= */
-
-@media (min-width:1601px) and (max-width:1920px){
-
-    /* =========================
-       BODY
-       ========================= */
-
-    body{
-        overflow-x:hidden;
-    }
-
-
-    /* =========================
-       HEADER
-       ========================= */
-
-    .header{
-        height:90px;
-        padding:0 80px;
-    }
-
-    .logo-img{
-        width:180px;
-    }
-
-    .nav-links{
-        gap:40px;
-    }
-
-    .nav-links a,
-    .dropbtn{
-        font-size:18px;
-    }
-
-    .dropdown-content{
-        top:calc(100% + 8px);
-    }
-
-
-    /* =========================
-       MAIN CONTAINER
-       ========================= */
-
-    .container{
-        width:100%;
-        max-width:1800px;
-        margin:0 auto;
-        padding:140px 60px 60px;
-    }
-
-
-    /* =========================
-       HERO SECTION
-       ========================= */
-
-    .hero{
-        grid-template-columns:42% 58%;
-        gap:55px;
-        align-items:center;
-        margin-bottom:100px;
-    }
-
-    .hero-content{
-        padding-left:20px;
-    }
-
-    .hero-content h1{
-        font-size:52px;
-        line-height:1.08;
-        margin-bottom:30px;
-    }
-
-    .hero-content p{
-        max-width:550px;
-        font-size:18px;
-        line-height:1.8;
-        margin-bottom:35px;
-    }
-
-    .hero-image{
-        width:100%;
-    }
-
-    .hero-image img{
-        width:100%;
-        height:520px;
-        object-fit:cover;
-        border-radius:22px;
-    }
-
-
-    /* =========================
-       FEATURE SECTION
-       ========================= */
-
-    .feature-section{
-        grid-template-columns:1.1fr .9fr;
-        gap:60px;
-        margin:110px 0;
-        align-items:center;
-    }
-
-    .feature-image{
-        width:100%;
-    }
-
-    .feature-image img{
-        width:100%;
-        height:500px;
-        object-fit:cover;
-    }
-
-    .feature-content{
-        padding:10px 20px;
-    }
-
-    .feature-content h2{
-        font-size:30px;
-        line-height:1.3;
-        margin-bottom:25px;
-    }
-
-    .feature-content p{
-        font-size:15px;
-        line-height:2;
-        margin-bottom:30px;
-    }
-
-
-    /* =========================
-       FIRST GUTTER IMAGE
-       ========================= */
-
-    .one{
-        width:100%;
-        margin-top:30px;
-    }
-
-    .one h2{
-        font-size:28px;
-        margin-bottom:25px;
-    }
-
-    .gallery-wrapper{
-        width:100%;
-        max-width:1740px;
-        margin:0 auto;
-    }
-
-    #gallery1{
-        width:100%;
-    }
-
-    .pathy-6{
-        width:100%;
-    }
-
-    .pathy-6 img{
-        width:100%;
-        max-width:100%;
-        height:auto;
-        object-fit:contain;
-    }
-
-
-    /* =========================
-       GUTTER FITTINGS TITLE
-       ========================= */
-
-    .gallery-wrapper + h2{
-        margin-top:70px;
-        margin-bottom:25px;
-        font-size:28px;
-    }
-
-
-    /* =========================
-       FITTINGS GALLERY
-       ========================= */
-
-    #gallery{
-        gap:20px;
-        padding:10px 5px 20px;
-    }
-
-    .gallery-item{
-        width:270px;
-        min-width:270px;
-        height:330px;
-        margin:0 10px;
-        padding:20px;
-        border-radius:18px;
-    }
-
-    .gallery-item img{
-        width:75%;
-        height:280px;
-        object-fit:contain;
-    }
-
-
-    /* =========================
-       SCROLL BUTTONS
-       ========================= */
-
-    .scroll-btn{
-        width:48px;
-        height:48px;
-        font-size:18px;
-    }
-
-    .left{
-        right:55px;
-    }
-
-    .right{
-        right:-5px;
-    }
-
-
-    /* =========================
-       CONTACT SECTION
-       ========================= */
-
-    .contact-section{
-        width:100%;
-        padding:110px 8%;
-        margin-top:100px;
-        top:0;
-    }
-
-    .contact-container{
-        max-width:1500px;
-        grid-template-columns:1fr 1fr;
-        gap:90px;
-        margin:auto;
-    }
-
-    .contact-left h5{
-        font-size:18px;
-        margin-bottom:18px;
-    }
-
-    .contact-left h2{
-        font-size:44px;
-        line-height:1.25;
-        margin-bottom:25px;
-    }
-
-    .contact-left > p{
-        max-width:650px;
-        font-size:18px;
-        line-height:1.8;
-        margin-bottom:40px;
-    }
-
-    .contact-info{
-        gap:25px;
-    }
-
-    .info-box{
-        gap:20px;
-    }
-
-    .info-box img{
-        width:58px;
-        height:58px;
-        padding:13px;
-    }
-
-    .info-box h4{
-        font-size:20px;
-    }
-
-    .info-box p{
-        font-size:16px;
-    }
-
-
-    /* =========================
-       CONTACT FORM
-       ========================= */
-
-    .contact-right{
-        width:100%;
-        padding:45px;
-        border-radius:20px;
-    }
-
-    .contact-right form{
-        gap:20px;
-    }
-
-    .contact-right input,
-    .contact-right textarea{
-        padding:17px;
-        font-size:16px;
-    }
-
-    .contact-right textarea{
-        min-height:170px;
-    }
-
-    .contact-right button{
-        padding:17px;
-        font-size:18px;
-    }
-
-}
-
-
-/* =========================================================
-   EXTRA LARGE 1920px EXACT OPTIMIZATION
-   ========================================================= */
-
-@media (min-width:1900px){
-
-    .header{
-        padding:0 100px;
-    }
-
-    .logo-img{
-        width:190px;
-    }
-
-    .nav-links{
-        gap:45px;
-    }
-
-    .container{
-        max-width:1840px;
-        padding-left:70px;
-        padding-right:70px;
-    }
-
-    .hero{
-        gap:70px;
-    }
-
-    .hero-content h1{
-        font-size:54px;
-    }
-
-    .hero-image img{
-        height:550px;
-    }
-
-    .feature-section{
-        gap:75px;
-    }
-
-    .feature-image img{
-        height:520px;
-    }
-
-    .feature-content h2{
-        font-size:32px;
-    }
-
-    .feature-content p{
-        font-size:15px;
-        line-height:2;
-    }
-
-    .gallery-item{
-        width:280px;
-        min-width:280px;
-        height:340px;
-    }
-
-    .gallery-item img{
-        height:290px;
-    }
-
-    .contact-container{
-        max-width:1550px;
-    }
-
-    .contact-left h2{
-        font-size:46px;
-    }
-
-}
-
-    ```css
-/* =========================================================
-   MOBILE RESPONSIVE FIX
-   Menu + Boxes + Gallery
-========================================================= */
-
-/* ---------- TABLET / MOBILE ---------- */
-@media (max-width: 768px) {
-
-    /* =========================
-       HEADER / MENU
-    ========================= */
-
-    .header {
-        height: 70px;
-        padding: 0 20px;
-        position: fixed;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .logo-img {
-        width: 125px;
-    }
-
-    .header-right {
-        width: auto;
-    }
-
-    .nav-links {
-        gap: 15px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 14px;
-        white-space: nowrap;
-    }
-
-    /* Products dropdown */
-    .dropdown-content {
-        min-width: 150px;
-        right: 0;
-        left: auto;
-        top: 30px;
-        border-radius: 8px;
-        padding: 5px 0;
-    }
-
-    .dropdown-content a {
-        font-size: 14px;
-        padding: 10px 14px;
-    }
-
-    /* Keep dropdown working on touch/mobile */
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-
-    /* =========================
-       MAIN CONTAINER
-    ========================= */
-
-    .container {
-        width: 100%;
-        max-width: 100%;
-        padding: 100px 15px 30px;
-        overflow: hidden;
-    }
-
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        margin-bottom: 50px;
-    }
-
-    .hero-image {
-        width: 100%;
-        order: -1;
-    }
-
-    .hero-image img {
-        width: 100%;
-        height: 300px;
-        border-radius: 15px;
-    }
-
-    .hero-content {
-        width: 100%;
-        text-align: left;
-    }
-
-    .hero-content h1 {
-        font-size: 34px;
-        line-height: 1.2;
-        margin-bottom: 20px;
-    }
-
-    .hero-content p {
-        max-width: 100%;
-        font-size: 15px;
-        line-height: 1.7;
-    }
-
-
-    /* =========================
-       FEATURE SECTION
-    ========================= */
-
-    .feature-section,
-    .feature-section.reverse {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: 25px;
-        margin: 60px 0;
-    }
-
-    .feature-image {
-        width: 100%;
-    }
-
-    .feature-image img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-    }
-
-    .feature-content {
-        width: 100%;
-        padding: 0;
-    }
-
-    .feature-content h2 {
-        font-size: 26px;
-        line-height: 1.3;
-    }
-
-    .feature-content p {
-        font-size: 14px;
-        line-height: 1.8;
-    }
-
-
-    /* =========================
-       GALLERY TITLE
-    ========================= */
-
-    .one {
-        width: 100%;
-    }
-
-    .one h2,
-    .gallery-wrapper + h2 {
-        font-size: 26px;
-        margin-bottom: 18px;
-    }
-
-
-    /* =========================
-       FIRST GUTTER IMAGE
-    ========================= */
-
-    .gallery-wrapper {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        overflow: hidden;
-        padding-top:44px;
-    }
-
-    #gallery1 {
-        width: 100%;
-    }
-
-    .pathy-6 {
-        width: 100%;
-    }
-
-    .pathy-6 img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        object-fit: contain;
-    }
-
-
-    /* =========================
-       FITTINGS GALLERY
-    ========================= */
-
-    #gallery {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-        gap: 15px;
-        padding: 10px 5px 20px;
-        display: flex;
-    }
-
-    .gallery-product {
-        flex: 0 0 210px;
-        width: 210px;
-        min-width: 210px;
-    }
-
-    .gallery-item {
-        width: 100%;
-        min-width: 100%;
-        height: 250px;
-        margin: 0;
-        padding: 15px;
-        border-radius: 14px;
-    }
-
-    .gallery-item img {
-        width: 75%;
-        height: 210px;
-        object-fit: contain;
-    }
-
-    .gallery-product > p {
-        width: 100%;
-        font-size: 14px;
-        margin-top: 12px;
-        white-space: normal;
-    }
-
-
-    /* =========================
-       SCROLL BUTTONS
-    ========================= */
-
-    .scroll-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 15px;
-        top: -20px;
-    }
-
-    .left {
-        right: 50px;
-    }
-
-    .right {
-        right: 5px;
-    }
-
-
-    /* =========================
-       CONTACT SECTION
-    ========================= */
-
-    .contact-section {
-        width: 100%;
-        padding: 60px 20px;
-        margin-top: 50px;
-        top: 0;
-    }
-
-    .contact-container {
-        width: 100%;
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .contact-left {
-        width: 100%;
-        text-align: left;
-    }
-
-    .contact-left h5 {
-        font-size: 16px;
-    }
-
-    .contact-left h2 {
-        font-size: 32px;
-        line-height: 1.3;
-    }
-
-    .contact-left > p {
-        font-size: 15px;
-        line-height: 1.7;
-    }
-
-    .contact-info {
-        width: 100%;
-    }
-
-    .info-box {
-        width: 100%;
-        gap: 15px;
-    }
-
-    .info-box img {
-        width: 50px;
-        height: 50px;
-        flex-shrink: 0;
-    }
-
-    .info-box h4 {
-        font-size: 18px;
-    }
-
-    .info-box p {
-        font-size: 14px;
-        word-break: break-word;
-    }
-
-
-    /* =========================
-       CONTACT FORM
-    ========================= */
-
-    .contact-right {
-        width: 100%;
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    .contact-right input,
-    .contact-right textarea {
-        width: 100%;
-        font-size: 15px;
-        padding: 14px;
-    }
-
-    .contact-right button {
-        width: 100%;
-        font-size: 16px;
-        padding: 14px;
-    }
-}
-
-
-/* =========================================================
-   SMALL MOBILE - 576px
-========================================================= */
-
-@media (max-width: 576px) {
-
-    /* Header */
-    .header {
-        height: 65px;
-        padding: 0 12px;
-    }
-
-    .logo-img {
-        width: 105px;
-    }
-
-    .nav-links {
-        gap: 10px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 12px;
-    }
-
-    .dropdown-content {
-        min-width: 135px;
-        top: 28px;
-    }
-
-    .dropdown-content a {
-        font-size: 12px;
-        padding: 9px 12px;
-    }
-
-
-    /* Main */
-    .container {
-        padding: 85px 12px 25px;
-    }
-
-
-    /* Hero */
-    .hero-image img {
-        height: 240px;
-    }
-
-    .hero-content h1 {
-        font-size: 28px;
-    }
-
-    .hero-content p {
-        font-size: 14px;
-    }
-
-
-    /* Feature */
-    .feature-section {
-        margin: 50px 0;
-    }
-
-    .feature-image img {
-        height: 240px;
-    }
-
-    .feature-content h2 {
-        font-size: 22px;
-    }
-
-    .feature-content p {
-        font-size: 14px;
-    }
-
-
-    /* Gallery */
-    .one h2,
-    .gallery-wrapper + h2 {
-        font-size: 22px;
-    }
-
-    .gallery-product {
-        flex: 0 0 180px;
-        width: 180px;
-        min-width: 180px;
-    }
-
-    .gallery-item {
-        height: 220px;
-    }
-
-    .gallery-item img {
-        height: 185px;
-    }
-
-    .gallery-product > p {
-        font-size: 13px;
-    }
-
-
-    /* Contact */
-    .contact-section {
-        padding: 50px 15px;
-    }
-
-    .contact-left h2 {
-        font-size: 28px;
-    }
-
-    .contact-left > p {
-        font-size: 14px;
-    }
-
-    .contact-right {
-        padding: 18px;
-    }
-}
-
-
-/* =========================================================
-   EXTRA SMALL MOBILE - 400px
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .header {
-        padding: 0 8px;
-    }
-
-    .logo-img {
-        width: 90px;
-    }
-
-    .nav-links {
-        gap: 7px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 11px;
-    }
-
-    .dropdown-content {
-        min-width: 125px;
-    }
-
-    .dropdown-content a {
-        font-size: 11px;
-    }
-
-
-    .container {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-
-    .hero-image img {
-        height: 200px;
-    }
-
-    .hero-content h1 {
-        font-size: 24px;
-    }
-
-
-    .feature-image img {
-        height: 210px;
-    }
-
-    .feature-content h2 {
-        font-size: 20px;
-    }
-
-
-    .gallery-product {
-        flex: 0 0 165px;
-        width: 165px;
-        min-width: 165px;
-    }
-
-    .gallery-item {
-        height: 200px;
-    }
-
-    .gallery-item img {
-        height: 170px;
-    }
-
-    .gallery-product > p {
-        font-size: 13px;
-    }
-
-
-    .contact-section {
-        padding: 45px 12px;
-    }
-
-    .contact-left h2 {
-        font-size: 25px;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES - 360px
-========================================================= */
-
-@media (max-width: 360px) {
-
-    .logo-img {
-        width: 80px;
-    }
-
-    .nav-links {
-        gap: 5px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 10px;
-    }
-
-    .gallery-product {
-        flex: 0 0 155px;
-        width: 155px;
-        min-width: 155px;
-    }
-
-    .gallery-item {
-        height: 190px;
-    }
-
-    .gallery-item img {
-        height: 160px;
-    }
-}
-```
-
-
-
-
-    /* =========================================================
-   FINAL MOBILE FIX
-========================================================= */
-
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-
-/* =========================================================
-   MOBILE HEADER
-========================================================= */
-
-@media (max-width: 768px) {
-
-    .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-
-        width: 100%;
-        height: auto;
-        min-height: 70px;
-
-        padding: 10px 15px;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        gap: 6px;
-    }
-
-    .header-left {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .logo-img {
-        width: 110px;
-        height: auto;
-    }
-
-    .header-right {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .nav {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .nav-links {
-        width: 100%;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        gap: 10px;
-
-        flex-wrap: wrap;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 13px;
-        white-space: nowrap;
-    }
-
-
-    /* PRODUCTS DROPDOWN */
-
-    .dropdown {
-        position: relative;
-    }
-
-    .dropdown-content {
-        position: absolute;
-
-        top: calc(100% + 5px);
-        left: 50%;
-        right: auto;
-
-        transform: translateX(-50%);
-
-        width: 150px;
-        min-width: 150px;
-
-        padding: 5px 0;
-
-        z-index: 2000;
-    }
-
-    .dropdown-content a {
-        display: block;
-        width: 100%;
-        padding: 10px 12px;
-
-        font-size: 13px;
-    }
-
-
-    /* =====================================================
-       MAIN CONTAINER
-    ===================================================== */
-
-    .container {
-        width: 100%;
-        max-width: 100%;
-
-        padding: 150px 15px 30px;
-
-        overflow: hidden;
-    }
-
-
-    /* =====================================================
-       HERO
-    ===================================================== */
-
-    .hero {
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-
-        gap: 25px;
-        margin-bottom: 50px;
-    }
-
-    .hero-image {
-        width: 100%;
-        order: -1;
-    }
-
-    .hero-image img {
-        width: 100%;
-        max-width: 100%;
-        height: 300px;
-
-        object-fit: cover;
-        border-radius: 15px;
-    }
-
-    .hero-content {
-        width: 100%;
-    }
-
-    .hero-content h1 {
-        max-width: 100%;
-        overflow-wrap: break-word;
-    }
-
-    .hero-content p {
-        max-width: 100%;
-        overflow-wrap: break-word;
-    }
-
-
-    /* =====================================================
-       FEATURE BOX
-    ===================================================== */
-
-    .feature-section,
-    .feature-section.reverse {
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-
-        gap: 25px;
-
-        margin: 60px 0;
-    }
-
-    .feature-image {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .feature-image img {
-        width: 100%;
-        max-width: 100%;
-        height: 300px;
-
-        object-fit: cover;
-    }
-
-    .feature-content {
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-    }
-
-    .feature-content p {
-        width: 100%;
-        max-width: 100%;
-
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    }
-
-
-    /* =====================================================
-       GUTTER PATHY IMAGE
-    ===================================================== */
-
-    .gallery-wrapper {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        overflow: hidden;
-        padding top:36px;
-    }
-
-    #gallery1 {
-        width: 100%;
-        max-width: 100%;
-
-        overflow: hidden;
-    }
-
-    .pathy-6 {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .pathy-6 img {
-        width: 60%;
-        max-width: 100%;
-        height: auto;
-
-        object-fit: contain;
-    }
-
-
-    /* =====================================================
-       GALLERY
-    ===================================================== */
-
-    #gallery {
-        width: 100%;
-        max-width: 100%;
-
-        display: flex;
-
-        gap: 15px;
-
-        overflow-x: auto;
-        overflow-y: hidden;
-
-        padding: 49px 5px 25px;
-
-        scroll-behavior: smooth;
-
-        scrollbar-width: none;
-    }
-
-    #gallery::-webkit-scrollbar {
-        display: none;
-    }
-
-
-    /* PRODUCT BOX */
-
-    #gallery .gallery-product {
-        flex: 0 0 190px;
-
-        width: 190px;
-        min-width: 190px;
-
-        max-width: 190px;
-
-        text-align: center;
-    }
-
-
-    /* BOX */
-
-    #gallery .gallery-item {
-        width: 190px;
-        min-width: 190px;
-        max-width: 190px;
-
-        height: 220px;
-
-        margin: 0;
-        padding: 12px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        overflow: hidden;
-
-        border-radius: 14px;
-    }
-
-
-    /* PRODUCT IMAGE */
-
-    #gallery .gallery-item img {
-        width: 75%;
-        max-width: 100%;
-
-        height: 185px;
-
-        object-fit: contain;
-    }
-
-
-    /* PRODUCT NAME */
-
-    #gallery .gallery-product > p {
-        width: 100%;
-        max-width: 190px;
-
-        margin-top: 12px;
-
-        white-space: normal;
-        overflow-wrap: break-word;
-
-        text-align: center;
-    }
-
-
-    /* =====================================================
-       SCROLL BUTTONS
-    ===================================================== */
-
-    .scroll-btn {
-        width: 35px;
-        height: 35px;
-
-        top: -42px;
-
-        transform: none;
-
-        font-size: 14px;
-    }
-
-    .scroll-btn.left {
-        right: 48px;
-        top:1px;
-    }
-
-    .scroll-btn.right {
-        right: 5px;
-        top:1px;
-    }
-
-
-    /* =====================================================
-       CONTACT
-    ===================================================== */
-
-    .contact-section {
-        width: 100%;
-
-        position: relative;
-        top: 0;
-
-        margin-top: 50px;
-
-        padding: 60px 15px;
-    }
-
-    .contact-container {
-        width: 100%;
-        max-width: 100%;
-
-        display: flex;
-        flex-direction: column;
-
-        gap: 35px;
-    }
-
-    .contact-left {
-        width: 100%;
-    }
-
-    .contact-right {
-        width: 100%;
-        max-width: 100%;
-
-        padding: 20px;
-
-        box-sizing: border-box;
-    }
-
-    .contact-right form {
-        width: 100%;
-    }
-
-    .contact-right input,
-    .contact-right textarea {
-        width: 100%;
-        max-width: 100%;
-
-        box-sizing: border-box;
-    }
-
-}
-
-
-/* =========================================================
-   576px
-========================================================= */
-
-@media (max-width: 576px) {
-
-    .header {
-        padding: 8px 10px;
-    }
-
-    .logo-img {
-        width: 95px;
-    }
-
-    .nav-links {
-        gap: 7px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 12px;
-    }
-
-    .container {
-        padding: 135px 12px 25px;
-    }
-
-    .hero-image img {
-        height: 240px;
-    }
-
-    #gallery .gallery-product {
-        flex: 0 0 175px;
-        width: 175px;
-        min-width: 175px;
-    }
-
-    #gallery .gallery-item {
-        width: 175px;
-        min-width: 175px;
-        height: 210px;
-    }
-
-    #gallery .gallery-item img {
-        height: 175px;
-    }
-
-    #gallery .gallery-product > p {
-        max-width: 175px;
-    }
-
-    .contact-section {
-        padding: 50px 12px;
-    }
-
-    .contact-right {
-        padding: 16px;
-    }
-}
-
-
-/* =========================================================
-   430px
-========================================================= */
-
-@media (max-width: 430px) {
-
-    .header {
-        min-height: 68px;
-        padding: 7px 8px;
-    }
-
-    .logo-img {
-        width: 90px;
-    }
-
-    .nav-links {
-        gap: 6px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 11px;
-    }
-
-    .container {
-        padding: 130px 10px 25px;
-    }
-
-    .hero-image img {
-        height: 220px;
-    }
-
-    .feature-image img {
-        height: 210px;
-    }
-
-    #gallery .gallery-product {
-        flex: 0 0 165px;
-        width: 165px;
-        min-width: 165px;
-    }
-
-    #gallery .gallery-item {
-        width: 165px;
-        min-width: 165px;
-        height: 200px;
-    }
-
-    #gallery .gallery-item img {
-        height: 165px;
-    }
-
-    #gallery .gallery-product > p {
-        max-width: 165px;
-    }
-}
-
-
-/* =========================================================
-   390px
-========================================================= */
-
-@media (max-width: 390px) {
-
-    .logo-img {
-        width: 85px;
-    }
-
-    .nav-links {
-        gap: 5px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 10px;
-    }
-
-    .container {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    #gallery .gallery-product {
-        flex: 0 0 155px;
-        width: 155px;
-        min-width: 155px;
-    }
-
-    #gallery .gallery-item {
-        width: 155px;
-        min-width: 155px;
-        height: 190px;
-    }
-
-    #gallery .gallery-item img {
-        height: 155px;
-    }
-
-    #gallery .gallery-product > p {
-        max-width: 155px;
-    }
-}
-
-
-/* =========================================================
-   375px
-========================================================= */
-
-@media (max-width: 375px) {
-
-    .header {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    .logo-img {
-        width: 80px;
-    }
-
-    .nav-links {
-        gap: 4px;
-    }
-
-    .nav-links a,
-    .dropbtn {
-        font-size: 10px;
-    }
-
-    .container {
-        padding-left: 7px;
-        padding-right: 7px;
-    }
-
-    #gallery .gallery-product {
-        flex: 0 0 150px;
-        width: 150px;
-        min-width: 150px;
-    }
-
-    #gallery .gallery-item {
-        width: 150px;
-        min-width: 150px;
-        height: 185px;
-    }
-
-    #gallery .gallery-item img {
-        height: 150px;
-    }
-
-    #gallery .gallery-product > p {
-        max-width: 150px;
-    }
-
-    .contact-right {
-        padding: 14px;
-    }
-}
-/* =========================================================
-   HAMBURGER MENU
-========================================================= */
-
-/* Hidden on desktop */
-.menu-toggle {
-    display: none;
-}
-
-
-/* =========================================================
-   MOBILE HAMBURGER
-========================================================= */
-
-@media (max-width: 768px) {
-
-    .header {
-        height: 65px;
-        min-height: 65px;
-
-        padding: 0 15px;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-
-        position: fixed;
-        top: 0;
-        left: 0;
-
-        z-index: 3000;
-    }
-
-    /* Logo */
-    .header-left {
-        width: auto;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-
-    .logo-img {
-        width: 105px;
-        height: auto;
-    }
-
-
-    /* =========================
-       HAMBURGER BUTTON
-    ========================= */
-
-    .menu-toggle {
-        width: 42px;
-        height: 42px;
-
-        display: flex;
-        flex-direction: column;
-
-        justify-content: center;
-        align-items: center;
-
-        gap: 5px;
-
-        background: transparent;
-        border: none;
-
-        cursor: pointer;
-
-        padding: 0;
-
-        z-index: 4000;
-    }
-
-    .menu-toggle span {
-        display: block;
-
-        width: 26px;
-        height: 3px;
-
-        background: #ffffff;
-
-        border-radius: 3px;
-
-        transition: all 0.3s ease;
-    }
-
-
-    /* =========================
-       MOBILE NAVIGATION
-    ========================= */
-
-    .header-right {
-        position: absolute;
-
-        top: 65px;
-        left: 0;
-
-        width: 100%;
-
-        display: none;
-
-        background: rgba(31, 43, 56, 0.98);
-
-        backdrop-filter: blur(10px);
-
-        padding: 15px 20px 20px;
-
-        box-shadow: 0 10px 25px rgba(0,0,0,.3);
-    }
-
-    /* Show menu */
-    .header-right.active {
-        display: block;
-    }
-
-
-    .nav {
-        width: 100%;
-    }
-
-    .nav-links {
-        width: 100%;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 0;
-    }
-
-
-    /* Menu links */
-
-    .nav-links > a,
-    .nav-links .dropbtn {
-        display: block;
-
-        width: 100%;
-
-        padding: 12px 10px;
-
-        text-align: center;
-
-        color: #ffffff;
-
-        font-size: 14px;
-
-        text-decoration: none;
-    }
-
-    .nav-links > a:hover,
-    .nav-links .dropbtn:hover {
-        color: #74d3ff;
-    }
-
-
-    /* =========================
-       PRODUCTS DROPDOWN
-    ========================= */
-
-    .dropdown {
-        position: relative;
-        width: 100%;
-        text-align: center;
-    }
-
-    .dropdown-content {
-        position: static;
-
-        width: 100%;
-        min-width: 100%;
-
-        transform: none;
-
-        background: #243241;
-
-        border-radius: 8px;
-
-        padding: 5px 0;
-
-        box-shadow: none;
-
-        display: none;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown-content a {
-        display: block;
-
-        width: 100%;
-
-        padding: 10px;
-
-        text-align: center;
-
-        font-size: 13px;
-    }
-
-
-    /* =========================
-       HAMBURGER → X
-    ========================= */
-
-    .menu-toggle.active span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-}
-
-
-/* =========================================================
-   576px
-========================================================= */
-
-@media (max-width: 576px) {
-
-    .header {
-        height: 60px;
-        min-height: 60px;
-
-        padding: 0 12px;
-    }
-
-    .header-right {
-        top: 60px;
-    }
-
-    .logo-img {
-        width: 95px;
-    }
-
-    .menu-toggle {
-        width: 40px;
-        height: 40px;
-    }
-
-    .menu-toggle span {
-        width: 24px;
-        height: 3px;
-    }
-
-}
-
-
-/* =========================================================
-   430px
-========================================================= */
-
-@media (max-width: 430px) {
-
-    .header {
-        height: 58px;
-        min-height: 58px;
-
-        padding: 0 10px;
-    }
-
-    .header-right {
-        top: 58px;
-    }
-
-    .logo-img {
-        width: 90px;
-    }
-
-}
-
-
-/* =========================================================
-   390px
-========================================================= */
-
-@media (max-width: 390px) {
-
-    .header {
-        padding: 0 8px;
-    }
-
-    .logo-img {
-        width: 85px;
-    }
-
-    .menu-toggle {
-        width: 38px;
-        height: 38px;
-    }
-
-    .menu-toggle span {
-        width: 23px;
-    }
-
-}
-
-
-/* =========================================================
-   375px
-========================================================= */
-
-@media (max-width: 375px) {
-
-    .header {
-        padding: 0 7px;
-    }
-
-    .logo-img {
-        width: 80px;
-    }
-
-}
-
-</style>
 </html>
+
